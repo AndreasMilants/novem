@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+{% block title %}Novem | Afmelden{% endblock title %}
+{% block content %}
+    <h2>Je bent afgemeld!</h2>
+    <p>
+        Je wordt automatisch doorgestuurd naar de <a class="link" href="{% url 'login' %}">aanmeld pagina</a> binnen <span
+            id="timer">5</span> seconden.
+    </p>
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function set_timer() {
+            let timer = document.getElementById("timer");
+            for (let i = 4; i >= 0; i--) {
+                await sleep(1000);
+                timer.innerText = i;
+            }
+            window.location.replace("{% url 'login' %}");
+        }
+
+        set_timer()
+    </script>
+{% endblock content %}

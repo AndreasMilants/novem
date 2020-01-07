@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block title %}Novem | Aanmelden{% endblock title %}
+{% block content %}
+    <form method="post">
+        <legend>Registreren</legend>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registreer</button>
+        <a href="{% url 'login' %}">Ik heb al een account</a>
+    </form>
+{% endblock content %}
