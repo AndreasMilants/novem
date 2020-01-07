@@ -17,8 +17,7 @@ class Organisation(models.Model):
 
     def check_password(self, raw_password):
         """
-        Returns a boolean of whether the raw_password was correct. Handles
-        hashing formats behind the scenes.
+        Code copied from official user model django
         """
 
         def setter(raw_password):
