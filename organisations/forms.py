@@ -1,7 +1,6 @@
 from .models import Organisation
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import gettext
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -9,11 +8,9 @@ class OrganisationCreateForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
-    password1 = forms.CharField(label=_("Password"),
-                                widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_("Password confirmation"),
-                                widget=forms.PasswordInput,
-                                help_text=gettext("Enter the same password as above, for verification."))
+    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput,
+                                help_text=_("Enter the same password as above, for verification."))
 
     class Meta:
         model = Organisation
@@ -45,7 +42,7 @@ class OrganisationChangeForm(forms.ModelForm):
 
     class Meta:
         model = Organisation
-        fields = ['name', 'password']
+        fields = ['name', 'password', 'is_active']
 
     def __init__(self, *args, **kwargs):
         super(OrganisationChangeForm, self).__init__(*args, **kwargs)

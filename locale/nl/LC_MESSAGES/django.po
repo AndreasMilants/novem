@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-08 11:46+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\novem\settings.py:115
+msgid "English"
+msgstr "Engels"
+
+#: .\novem\settings.py:116
+msgid "Dutch"
+msgstr "Nederlands"
+
+#: .\organisations\admin.py:54
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr "%(name)s object met primary key %(key)r bestaat niet"
+
+#: .\organisations\admin.py:64
+msgid "Password changed successfully."
+msgstr "Wachtwoord succesvol aangepast"
+
+#: .\organisations\admin.py:84
+#, python-format
+msgid "Change password: %s"
+msgstr "Verander wachtwoord: %s"
+
+#: .\organisations\apps.py:7 .\organisations\models.py:18
+msgid "Organisations"
+msgstr "Organisaties"
+
+#: .\organisations\forms.py:9 .\organisations\forms.py:112
+msgid "The two password fields didn't match."
+msgstr "De twee wachtwoordvelden kwamen niet overeen."
+
+#: .\organisations\forms.py:11 .\organisations\forms.py:38
+#: .\organisations\forms.py:62 .\organisations\forms.py:116
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: .\organisations\forms.py:12
+msgid "Password confirmation"
+msgstr "Bevestiging wachtwoord"
+
+#: .\organisations\forms.py:13 .\organisations\forms.py:122
+msgid "Enter the same password as above, for verification."
+msgstr "Voer ter verificatie nogmaals het wachtwoord in."
+
+#: .\organisations\forms.py:39
+msgid ""
+"Raw passwords are not stored, so there is no way to see this user's "
+"password, but you can change the password using <a href=\"password/\">this "
+"form</a>."
+msgstr ""
+"Wachtwoorden worden niet als tekst opgeslagen, dus u kunt het wachtwoord van "
+"deze gebruiker niet zien. U kunt het wel wijzigen via <a href=\"password/"
+"\">dit formulier</a>."
+
+#: .\organisations\forms.py:65
+#, python-format
+msgid ""
+"Please enter a correct %(name)s and password. Note that both fields are case-"
+"sensitive."
+msgstr ""
+"Voer de correcte %(name)s en wachtwoord in. Let op dat beide velden "
+"hoofdlettergevoelig zijn."
+
+#: .\organisations\forms.py:67
+msgid "This account is inactive."
+msgstr "Dit account is inactief"
+
+#: .\organisations\forms.py:120
+msgid "Password (again)"
+msgstr "Wachtwoord (herhaling)"
+
+#: .\organisations\models.py:9
+msgid "name"
+msgstr "naam"
+
+#: .\organisations\models.py:10
+msgid "password"
+msgstr "wachtwoord"
+
+#: .\organisations\models.py:11
+msgid "is active"
+msgstr "is actief"
+
+#: .\organisations\models.py:12
+msgid "Users can register with this organisation"
+msgstr "Gebruikers kunnen registreren bij deze organisatie"
+
+#: .\organisations\models.py:17
+msgid "Organisation"
+msgstr "Organisatie"
+
+#: .\organisations\templates\organisations\change_password.html:14
+msgid "Home"
+msgstr "Home"
+
+#: .\organisations\templates\organisations\change_password.html:20
+#: .\organisations\templates\organisations\change_password.html:32
+msgid "Change password"
+msgstr "Verander wachtwoord"
+
+#: .\surveys\apps.py:7
+msgid "surveys"
+msgstr "vragenlijsten"
+
+#: .\users\apps.py:7
+msgid "users"
+msgstr "gebruikers"
+
+#, fuzzy
+#~| msgid "Organisations"
+#~ msgid "organisations"
+#~ msgstr "organisaties"

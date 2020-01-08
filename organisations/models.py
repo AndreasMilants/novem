@@ -2,23 +2,28 @@ from django.contrib.auth import password_validation
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password, is_password_usable
 from django.utils.translation import ugettext_lazy as _
-from django.utils.crypto import get_random_string, salted_hmac
+from django.utils.crypto import salted_hmac
 
 
 class Organisation(models.Model):
-    name = models.CharField(unique=True, blank=False, db_index=True, max_length=255)
+    name = models.CharField(_('name'), unique=True, blank=False, db_index=True, max_length=255)
     password = models.CharField(_('password'), max_length=128)
-    is_active = models.BooleanField(default=True, blank=False)
+    is_active = models.BooleanField(_('is active'), default=True, blank=False,
+                                    help_text=_('Users can register with this organisation'))
 
     _password = None
 
+    class Meta:
+        verbose_name = _('Organisation')
+        verbose_name_plural = _('Organisations')
+
     def check_password(self, raw_password):
         """
-        Code copied from official user model django
+        Only checks the password. Does not check whether the organisation is active
         """
 
-        def setter(raw_password):
-            self.set_password(raw_password)
+        def setter(password):
+            self.set_password(password)
             self.save(update_fields=["password"])
 
         return check_password(raw_password, self.password, setter)
