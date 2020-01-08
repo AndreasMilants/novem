@@ -1,7 +1,8 @@
-from .models import Organisation
+from .models import Organisation, OrganisationUserLink
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class OrganisationCreateForm(forms.ModelForm):
@@ -57,32 +58,46 @@ class OrganisationChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-class OrganisationAuthenticationForm(forms.Form):
-    name = forms.CharField(max_length=254)
+class OrganisationAuthenticationForm(forms.ModelForm):
+    #  organisation = forms.CharField(label=_('Organisation'), max_length=255)
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
 
+    class Meta:
+        model = OrganisationUserLink
+        fields = ['organisation', 'password']
+        widgets = {'parent': forms.CharField(max_length=255)}
+
     error_messages = {
-        'invalid_login': _("Please enter a correct %(name)s and password. "
+        'invalid_login': _("Please enter a correct organisation and password. "
                            "Note that both fields are case-sensitive."),
         'inactive': _("This account is inactive."),
     }
 
     def clean(self):
-        name = self.cleaned_data.get('name')
+        organisation = self.cleaned_data.get('organisation')
         password = self.cleaned_data.get('password')
-
-        if name and password:
-            organisation_cache = Organisation.objects.get(name=name)
-            if not organisation_cache or not organisation_cache.check_password(password):
-                raise forms.ValidationError(
-                    self.error_messages['invalid_login'],
-                    code='invalid_login',
-                    params={'name': 'name'},
-                )
-            else:
-                self.confirm_login_allowed(organisation_cache)
-
+        try:
+            if organisation and password:
+                organisation_cache = Organisation.objects.get(name=organisation)
+                if not organisation_cache or not organisation_cache.check_password(password):
+                    raise forms.ValidationError(
+                        self.error_messages['invalid_login'],
+                        code='invalid_login',
+                        # params={'organisation': 'organisation'},
+                    )
+                else:
+                    self.confirm_registration_with_organisation_allowed(organisation_cache)
+        except ObjectDoesNotExist:
+            raise forms.ValidationError(
+                self.error_messages['invalid_login'],
+                code='invalid_login',
+                params={'organisation': 'organisation'},
+            )
         return self.cleaned_data
+
+    def is_valid(self):
+        self.full_clean()
+        return super().is_valid()
 
     def confirm_registration_with_organisation_allowed(self, organisation):
         """
@@ -152,4 +167,5 @@ class AdminPasswordChangeForm(forms.Form):
             if name not in data:
                 return []
         return ['password']
+
     changed_data = property(_get_changed_data)

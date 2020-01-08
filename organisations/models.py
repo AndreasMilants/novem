@@ -3,10 +3,11 @@ from django.db import models
 from django.contrib.auth.hashers import make_password, check_password, is_password_usable
 from django.utils.translation import ugettext_lazy as _
 from django.utils.crypto import salted_hmac
+from django.contrib.auth import get_user_model
 
 
 class Organisation(models.Model):
-    name = models.CharField(_('name'), unique=True, blank=False, db_index=True, max_length=255)
+    name = models.CharField(_('name'),primary_key=True, unique=True, blank=False, db_index=True, max_length=255)
     password = models.CharField(_('password'), max_length=128)
     is_active = models.BooleanField(_('is active'), default=True, blank=False,
                                     help_text=_('Users can register with this organisation'))
@@ -57,3 +58,16 @@ class Organisation(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class OrganisationUserLink(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('organisation'))
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE,
+                                     verbose_name=_('organisation'), related_name=_('user'))
+
+    class Meta:
+        verbose_name = _('user-organisation-link')
+        verbose_name_plural = _('user-organisation-links')
+
+    def __str__(self):
+        return '{user} - {organisation}'.format(user=str(self.user), organisation=str(self.organisation))

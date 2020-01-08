@@ -41,3 +41,10 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+    def save(self, *args, **kwargs):
+        self.username = self.email
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.email

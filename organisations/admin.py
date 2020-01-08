@@ -1,5 +1,5 @@
 from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm
-from .models import Organisation
+from .models import Organisation, OrganisationUserLink
 from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib import admin, messages
 from django.contrib.auth import update_session_auth_hash
@@ -20,7 +20,7 @@ class OrganisationAdmin(admin.ModelAdmin):
     form = OrganisationChangeForm
     change_password_form = AdminPasswordChangeForm
     model = Organisation
-    list_filter = ['name']
+    list_filter = ['name', ]
 
     def lookup_allowed(self, lookup, value):
         # Don't allow lookups involving passwords.
@@ -28,7 +28,7 @@ class OrganisationAdmin(admin.ModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         """
-        Use special form during user creation
+        Use special form during organisation creation
         """
         defaults = {}
         if obj is None:

@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                Meld je aan bij een organisatie
+            </legend>
+            {{ form.as_p }}
+        </fieldset>
+        <p>
+            <button type="submit">Meld je aan</button>
+        </p>
+    </form>
+    <p>{{ user.email }}</p>
+    <a href="{% url 'logout' %}">Log Out</a>
+{% endblock content %}

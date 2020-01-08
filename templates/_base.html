@@ -5,6 +5,28 @@
     <title>{% block title %}Novem{% endblock title %}</title>
 </head>
 <body>
+{% if messages %}
+    <section>
+        <ul class="error-messages messages">
+            {% for message in messages %}
+                {% if 'error' in message.tags %}
+                    <li class="message {{ message.tags }}">
+                        {{ message }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul class="success-messages messages">
+            {% for message in messages %}
+                {% if 'success' in message.tags %}
+                    <li class="message {{ message.tags }}">
+                        {{ message }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
 {% block content %}
 {% endblock content %}
 </body>
