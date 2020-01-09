@@ -1,33 +1,70 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Novem{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        window.addEventListener("load", initPage, false);
+
+        function initPage() {
+            document.getElementById("nav-open").addEventListener("click", openNav, false);
+            document.getElementById("nav-close").addEventListener("click", closeNav, false);
+        }
+
+        function openNav() {
+            let nav = document.getElementById("nav");
+            nav.classList.add('visible');
+            document.getElementById("nav-open").classList.remove("visible");
+        }
+
+        function closeNav() {
+            let nav = document.getElementById("nav");
+            nav.classList.remove('visible');
+            document.getElementById("nav-open").classList.add("visible");
+        }
+
+        function toggleNav() {
+            let nav = document.getElementById("nav");
+            nav.classList.toggle('visible');
+            document.getElementById("nav-open").classList.toggle("visible");
+        }
+    </script>
 </head>
 <body>
-{% if messages %}
-    <section>
-        <ul class="error-messages messages">
-            {% for message in messages %}
-                {% if 'error' in message.tags %}
-                    <li class="message {{ message.tags }}">
-                        {{ message }}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        <ul class="success-messages messages">
-            {% for message in messages %}
-                {% if 'success' in message.tags %}
-                    <li class="message {{ message.tags }}">
-                        {{ message }}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </section>
-{% endif %}
-{% block content %}
-{% endblock content %}
+<section>
+    <div id="nav-open" class="material-icons visible">menu</div>
+    {% if messages %}
+        <section>
+            <ul>
+                {% for message in messages %}
+                    {% if 'error' in message.tags %}
+                        <li>
+                            {{ message }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <li>
+                            {{ message }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+</section>
+<nav id="nav">
+    {% block nav %}{% endblock nav %}
+</nav>
 </body>
 </html>

@@ -121,6 +121,11 @@ LANGUAGES = (
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    "static"
+]
+
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_URL = 'login'

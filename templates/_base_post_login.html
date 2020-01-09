@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load i18n static %}
+
+{% block nav %}
+    <div id="nav-close" class="material-icons">close</div>
+    <section class="account-card">
+        <!--<span>{{ user.email }}</span>-->
+        <ul>
+            {% for organisation in user.organisationuserlink_set.all %}
+                <li><span class="material-icons">group</span>{{ organisation.organisation }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <ul class="navigation">
+        <li><a href="{% url 'home' %}"><span class="material-icons">home</span><span>{% trans 'Home' %}</span></a></li>
+        {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}"><span
+                    class="material-icons">supervisor_account</span><span>{% trans 'Admin page' %}</span></a></li>
+        {% endif %}
+        <li><a href="{% url 'logout' %}"><span
+                class="material-icons">exit_to_app</span><span>{% trans 'Log Out' %}</span></a></li>
+    </ul>
+{% endblock nav %}

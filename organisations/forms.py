@@ -65,7 +65,6 @@ class OrganisationAuthenticationForm(forms.ModelForm):
     class Meta:
         model = OrganisationUserLink
         fields = ['organisation', 'password']
-        widgets = {'parent': forms.CharField(max_length=255)}
 
     error_messages = {
         'invalid_login': _("Please enter a correct organisation and password. "

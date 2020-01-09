@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import homepage, add_organisation
+from .views import homepage, add_organisation, survey
 
 urlpatterns = [
     path('', homepage, name='home'),
     path('link-to-org', add_organisation, name='authenticate-with-org'),
+    path('survey/<page>', survey, name='survey'),
 ]

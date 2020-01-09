@@ -61,6 +61,7 @@ class Organisation(models.Model):
 
 
 class OrganisationUserLink(models.Model):
+    """We use an extra table, so that in the future users can be linked to multiple organisations"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('organisation'))
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE,
                                      verbose_name=_('organisation'), related_name=_('user'))

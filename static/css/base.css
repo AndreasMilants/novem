@@ -1,0 +1,157 @@
+html {
+    font-family: 'Roboto', 'sans-serif';
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    font-family: 'Anton', sans-serif;
+}
+
+#nav-open, #nav-close {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-size: 2.5rem;
+    color: black;
+    cursor: pointer;
+}
+
+#nav-open.visible {
+    display: block;
+}
+
+.visible #nav-close {
+    display: block;
+    animation: .5s rotate ease 1;
+}
+
+#nav-close {
+    color: white;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    height: 100vh;
+    width: 100vw;
+    background-color: #345699;
+    color: white;
+    transition: .5s left ease;
+}
+
+nav.visible {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li .material-icons {
+    margin: 0 2rem 0 1rem;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav li a, nav li a:hover {
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+nav li a {
+    display: block;
+    padding: 1rem;
+}
+
+nav li {
+    transition: .6s;
+    position: relative;
+    left: 0;
+}
+
+.account-card {
+    margin: 2.5rem 0;
+    padding: 1rem 0 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #042a61;
+}
+
+#current {
+    background: #042a61;
+}
+
+.button {
+    padding: 1rem;
+    border-radius: 2px;
+    background-color: #042a61;
+    color: white;
+    text-decoration: none;
+}
+
+.home-page {
+    margin: 3rem;
+}
+
+.survey p {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+    body {
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+    }
+
+    body > section {
+        flex: 1;
+    }
+
+    nav {
+        position: relative;
+        left: 0;
+        height: 100vh;
+        width: 25vw;
+        min-width: 300px;
+        max-width: 400px;
+        background-color: #345699;
+        color: white;
+        transition: .5s left ease;
+    }
+
+    #nav-close, #nav-open {
+        display: none;
+    }
+
+    .navigation li:hover {
+        background: #3595f6;
+        position: relative;
+        left: -1rem;
+    }
+
+    .survey p {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+}
