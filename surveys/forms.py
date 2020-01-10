@@ -12,9 +12,9 @@ class CreateSurveyForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = ['answer', 'question']
+        fields = ['answer', 'question', ]
         widgets = {'answer': forms.NumberInput(attrs={'type': 'range', 'min': '-50', 'max': '50'}),
-                   'question': forms.HiddenInput()}
+                   'question': forms.HiddenInput(), }
         labels = {'answer': ''}
 
 

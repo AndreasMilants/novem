@@ -36,20 +36,25 @@ def add_organisation(request):
 
 
 @login_required
-def survey(request, page):
+def survey_view(request, page):
     if request.method == "POST":
         form_set = AnswerFormSet(request.POST)
         if form_set.is_valid():
             for form in form_set:
                 if form.is_valid():
-                    model = form.save(commit=False)
-                    model.user = request.user
+                    models = Answer.objects.all().filter(question=form.cleaned_data.get('question'), user=request.user)
+                    if not models:
+                        model = form.save(commit=False)
+                        model.user = request.user
+                    else:
+                        model = models[0]
+                        model.answer = form.cleaned_data.get('answer')
                     model.save()
             return redirect("survey", page=str(int(page) + 1))
     else:
         # TODO This line should be changed to something that actually gets the correct survey
         survey = Survey.objects.all()[0]
-        answers = [{'question': answer.question, 'user': request.user, 'answer': answer.answer} for answer in
+        answers = [{'question': answer.question, 'user': request.user, 'answer': answer.answer, 'id': answer.id} for answer in
                    Answer.objects.all().filter(user=request.user, question__level=page, question__survey=survey)]
         if not answers:
             answers = [{'question': question, 'user': request.user} for question in

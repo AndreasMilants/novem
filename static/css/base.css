@@ -117,6 +117,65 @@ nav li {
     flex-direction: column;
 }
 
+/* bbbbbbbbbbbbbbbbbbbbbbbbb */
+
+.slider input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #042a61;
+}
+
+.slider input:hover {
+}
+
+.slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #042a61;
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+    z-index: 1;
+}
+
+.slider input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #042a61;
+    cursor: pointer;
+    border-radius: 0;
+    border: none;
+}
+
+/* bbbbbbbbbbbbbbbbbbbbbbbbb */
+
+.background-input-range {
+    position: absolute;
+    height: 20px;
+    top: 5px;
+    z-index: -1;
+}
+
+.background-input-range.left {
+    right: 50%;
+    background-color: red;
+}
+
+.background-input-range.right {
+    left: 50%;
+    background-color: green;
+}
+
+.survey .q > div {
+    position: relative;
+}
+
+
 @media screen and (min-width: 769px) {
     body {
         display: flex;
@@ -150,7 +209,7 @@ nav li {
         left: -1rem;
     }
 
-    .survey p {
+    .survey .q {
         display: grid;
         grid-template-columns: 2fr 1fr;
     }

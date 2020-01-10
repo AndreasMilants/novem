@@ -52,6 +52,7 @@ class Answer(models.Model):
     class Meta:
         verbose_name = _('Answer')
         verbose_name_plural = _('Answers')
+        unique_together = ('question', 'user',)
 
     def __str__(self):
         return '{} - {}'.format(str(self.user), str(self.question))

@@ -6,8 +6,63 @@
         <form method="post" class="survey">
             <legend>{{ level }}</legend>
             {% csrf_token %}
-            {{ form_set.as_p }}
+            {{ form_set.management_form }}
+            {% for form in form_set %}
+                {{ form.non_field_errors }}
+                {{ form.source.errors }}
+                {{ form.source }}
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field.errors }}
+                    {{ hidden_field }}
+                {% endfor %}
+                <div class="q">
+                    {{ form.answer.label }}
+                    <div class="slider">
+                        {{ form.answer }}
+                        <div class="background-input-range left"></div>
+                        <div class="background-input-range right"></div>
+                    </div>
+                </div>
+            {% endfor %}
             <button type="submit">Volgende</button>
         </form>
     </article>
+    <script>
+        window.addEventListener("load", addBackGrounds, false);
+
+        function addBackGrounds() {
+            let inputs = document.querySelectorAll("input[type=range]");
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener("input", changeBackGroundWEvent, false);
+                changeBackGround(inputs[i]);
+            }
+        }
+
+        function changeBackGroundWEvent(event) {
+            changeBackGround(event.target);
+        }
+
+        function changeBackGround(slider) {
+            let value = slider.value;
+            let percentage = (value - slider.min) / (slider.max - slider.min);
+            let color = "rgb(" + Math.round(255 - 255 * percentage) + "," + Math.round(255 * percentage) + ",20)";
+            let left = slider.parentElement.childNodes[3];
+            let right = slider.parentElement.childNodes[5];
+            if (value > slider.max - (slider.max - slider.min) / 2) {
+                left.style.width = "0";
+                let w = value / slider.max * 50 * .9;
+                right.style.width = w + "%";
+            } else {
+                right.style.width = "0";
+                let w = Math.abs(value / slider.max * 50 * .9);
+                left.style.width = w + "%";
+            }
+            right.style.backgroundColor = color;
+            left.style.backgroundColor = color;
+        }
+
+        function getShowedWidth(value, max) {
+
+        }
+    </script>
 {% endblock content %}
