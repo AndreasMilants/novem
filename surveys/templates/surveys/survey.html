@@ -2,33 +2,63 @@
 {% load i18n static %}
 
 {% block content %}
-    <article class="home-page">
+    <article>
+        <h2>{{ level }}</h2>
         <form method="post" class="survey">
-            <legend>{{ level }}</legend>
             {% csrf_token %}
             {{ form_set.management_form }}
             {% for form in form_set %}
-                {{ form.non_field_errors }}
-                {{ form.source.errors }}
-                {{ form.source }}
-                {% for hidden_field in form.hidden_fields %}
-                    {{ hidden_field.errors }}
-                    {{ hidden_field }}
-                {% endfor %}
-                <div class="q">
-                    {{ form.answer.label }}
-                    <div class="slider">
-                        {{ form.answer }}
-                        <div class="background-input-range left"></div>
-                        <div class="background-input-range right"></div>
+                <section class="question">
+                    {{ form.non_field_errors }}
+                    {{ form.source.errors }}
+                    {{ form.source }}
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field.errors }}
+                        {{ hidden_field }}
+                    {% endfor %}
+                    <div class="q">
+                        {{ form.answer.label }}
+                        <div class="slider">
+                            {{ form.answer }}
+                            <div class="background-input-range left"></div>
+                            <div class="background-input-range right"></div>
+                        </div>
                     </div>
-                </div>
+                </section>
             {% endfor %}
-            <button type="submit">Volgende</button>
+            <div class="survey-next-buttons">
+                {% if page > 1 %}
+                    <button type="submit" id="previous-button">{% trans 'Previous' %}</button>
+                {% endif %}
+                <button type="submit">{% trans 'Next' %}</button>
+            </div>
         </form>
     </article>
     <script>
-        window.addEventListener("load", addBackGrounds, false);
+        window.addEventListener("load", initForm, false);
+
+        function initForm() {
+            previousButton();
+            addBackGrounds();
+        }
+
+        function previousButton() {
+            try {
+                let pB = document.getElementById("previous-button");
+                pB.addEventListener("click", clickedPrevious, false);
+            } catch (e) {
+
+            }
+        }
+
+        function clickedPrevious() {
+            let form = document.getElementsByClassName("survey")[0];
+            let input = document.createElement("input");
+            input.name = "previous";
+            input.value = "true";
+            input.type = "hidden";
+            form.appendChild(input);
+        }
 
         function addBackGrounds() {
             let inputs = document.querySelectorAll("input[type=range]");

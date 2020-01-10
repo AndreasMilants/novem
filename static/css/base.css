@@ -34,6 +34,10 @@ h1, h2 {
     color: white;
 }
 
+.navigation li:hover {
+    background: #3595f6;
+}
+
 @-webkit-keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -108,16 +112,14 @@ nav li {
     text-decoration: none;
 }
 
-.home-page {
-    margin: 3rem;
+article {
+    margin: .5rem;
 }
 
 .survey p {
     display: flex;
     flex-direction: column;
 }
-
-/* bbbbbbbbbbbbbbbbbbbbbbbbb */
 
 .slider input {
     -webkit-appearance: none;
@@ -152,8 +154,6 @@ nav li {
     border: none;
 }
 
-/* bbbbbbbbbbbbbbbbbbbbbbbbb */
-
 .background-input-range {
     position: absolute;
     height: 20px;
@@ -175,12 +175,38 @@ nav li {
     position: relative;
 }
 
+.question {
+    margin-bottom: 1rem;
+}
+
+fieldset {
+    border: none;
+}
+
+.survey-next-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.survey-next-buttons button {
+    margin: 3rem 0 0 1rem;
+    padding: 1rem;
+    border-radius: 2px;
+    background-color: #042a61;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
 
 @media screen and (min-width: 769px) {
     body {
         display: flex;
         flex-direction: row;
         justify-content: stretch;
+    }
+
+    article {
+        margin: 3rem;
     }
 
     body > section {
@@ -201,12 +227,6 @@ nav li {
 
     #nav-close, #nav-open {
         display: none;
-    }
-
-    .navigation li:hover {
-        background: #3595f6;
-        position: relative;
-        left: -1rem;
     }
 
     .survey .q {

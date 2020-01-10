@@ -1,14 +1,12 @@
 {% extends '_base_post_login.html' %}
 
 {% block content %}
+    <h2>
+        Meld je aan bij een organisatie
+    </h2>
     <form method="POST">
         {% csrf_token %}
-        <fieldset>
-            <legend>
-                Meld je aan bij een organisatie
-            </legend>
-            {{ form.as_p }}
-        </fieldset>
+        {{ form.as_p }}
         <p>
             <button type="submit">Meld je aan</button>
         </p>

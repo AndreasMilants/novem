@@ -50,6 +50,8 @@ def survey_view(request, page):
                         model = models[0]
                         model.answer = form.cleaned_data.get('answer')
                     model.save()
+            if request.POST.get('previous', False):
+                return redirect("survey", page=str(max(0, int(page) - 1)))
             return redirect("survey", page=str(int(page) + 1))
     else:
         # TODO This line should be changed to something that actually gets the correct survey
@@ -62,5 +64,5 @@ def survey_view(request, page):
         form_set = get_answer_form_set(answers)
 
     return render(request, 'surveys/survey.html',
-                  {'page': page, 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
+                  {'page': int(page), 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
                    'level': LEVEL_CHOICES[int(page) - 1][1]})
