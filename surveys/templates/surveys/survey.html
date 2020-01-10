@@ -2,38 +2,37 @@
 {% load i18n static %}
 
 {% block content %}
-    <article>
-        <h2>{{ level }}</h2>
-        <form method="post" class="survey">
-            {% csrf_token %}
-            {{ form_set.management_form }}
-            {% for form in form_set %}
-                <section class="question">
-                    {{ form.non_field_errors }}
-                    {{ form.source.errors }}
-                    {{ form.source }}
-                    {% for hidden_field in form.hidden_fields %}
-                        {{ hidden_field.errors }}
-                        {{ hidden_field }}
-                    {% endfor %}
-                    <div class="q">
-                        {{ form.answer.label }}
-                        <div class="slider">
-                            {{ form.answer }}
-                            <div class="background-input-range left"></div>
-                            <div class="background-input-range right"></div>
-                        </div>
+    <h1>{{ survey }}</h1>
+    <h2>{{ level }}</h2>
+    <form method="post" class="survey">
+        {% csrf_token %}
+        {{ form_set.management_form }}
+        {% for form in form_set %}
+            <section class="question">
+                {{ form.non_field_errors }}
+                {{ form.source.errors }}
+                {{ form.source }}
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field.errors }}
+                    {{ hidden_field }}
+                {% endfor %}
+                <div class="q">
+                    {{ form.answer.label }}
+                    <div class="slider">
+                        {{ form.answer }}
+                        <div class="background-input-range left"></div>
+                        <div class="background-input-range right"></div>
                     </div>
-                </section>
-            {% endfor %}
-            <div class="survey-next-buttons">
-                {% if page > 1 %}
-                    <button type="submit" id="previous-button">{% trans 'Previous' %}</button>
-                {% endif %}
-                <button type="submit">{% trans 'Next' %}</button>
-            </div>
-        </form>
-    </article>
+                </div>
+            </section>
+        {% endfor %}
+        <div class="survey-next-buttons">
+            {% if page > 1 %}
+                <button type="submit" id="previous-button">{% trans 'Previous' %}</button>
+            {% endif %}
+            <button type="submit">{% trans 'Next' %}</button>
+        </div>
+    </form>
     <script>
         window.addEventListener("load", initForm, false);
 

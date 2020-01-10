@@ -1,8 +1,10 @@
 {% extends '_base.html' %}
+{% load i18n static %}
+
 {% block title %}Novem | Aanmelden{% endblock title %}
 {% block content %}
+    <h1>{% trans 'Log In' %}</h1>
     <form method="post">
-        <legend>Log In</legend>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Log In</button>

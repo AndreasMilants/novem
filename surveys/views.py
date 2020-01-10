@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from organisations.forms import OrganisationAuthenticationForm
-from organisations.models import OrganisationUserLink, Organisation
 from django.utils.translation import ugettext_lazy as _
 from .models import Question, LEVEL_CHOICES, Survey, Answer
-from .forms import AnswerFormSet, AnswerForm, get_answer_form_set
+from .forms import AnswerFormSet, get_answer_form_set
 
 
 @login_required
@@ -17,26 +15,9 @@ def homepage(request):
 
 
 @login_required
-def add_organisation(request):
-    if request.method == "POST":
-        form = OrganisationAuthenticationForm(request.POST)
-        if form.is_valid():
-            model = form.save(commit=False)
-            org_user_link = OrganisationUserLink(organisation=Organisation.objects.get(name=model.organisation),
-                                                 user=request.user)
-            org_user_link.save()
-            messages.success(request, _('You are now a member of %(organisation)s.') % {
-                'organisation': model.organisation,
-            })
-            return redirect('home')
-    else:
-        form = OrganisationAuthenticationForm()
-    return render(request, "organisations/authenticate_organisation.html",
-                  {"form": form, })
-
-
-@login_required
 def survey_view(request, page):
+    # TODO This line should be changed to something that actually gets the correct survey
+    survey = Survey.objects.all()[0]
     if request.method == "POST":
         form_set = AnswerFormSet(request.POST)
         if form_set.is_valid():
@@ -54,8 +35,6 @@ def survey_view(request, page):
                 return redirect("survey", page=str(max(0, int(page) - 1)))
             return redirect("survey", page=str(int(page) + 1))
     else:
-        # TODO This line should be changed to something that actually gets the correct survey
-        survey = Survey.objects.all()[0]
         answers = [{'question': answer.question, 'user': request.user, 'answer': answer.answer, 'id': answer.id} for answer in
                    Answer.objects.all().filter(user=request.user, question__level=page, question__survey=survey)]
         if not answers:
@@ -65,4 +44,4 @@ def survey_view(request, page):
 
     return render(request, 'surveys/survey.html',
                   {'page': int(page), 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
-                   'level': LEVEL_CHOICES[int(page) - 1][1]})
+                   'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey})

@@ -24,4 +24,5 @@ urlpatterns = [
 
     # Other apps
     path('', include('surveys.urls')),
+    path('organisations/', include('organisations.urls')),
 ]

@@ -3,6 +3,8 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.functional import lazy
+from django.forms.models import ModelChoiceIterator
 
 
 class OrganisationCreateForm(forms.ModelForm):
@@ -59,8 +61,14 @@ class OrganisationChangeForm(forms.ModelForm):
 
 
 class OrganisationAuthenticationForm(forms.ModelForm):
-    #  organisation = forms.CharField(label=_('Organisation'), max_length=255)
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        queryset = Organisation.objects.all().filter(is_active=True)
+        iterator = ModelChoiceIterator(field=self.fields['organisation'])
+        iterator.queryset = queryset
+        self.fields['organisation'].choices = iterator
 
     class Meta:
         model = OrganisationUserLink

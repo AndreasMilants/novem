@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-09 15:46+0100\n"
+"POT-Creation-Date: 2020-01-10 18:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,24 +44,24 @@ msgstr "Verander wachtwoord: %s"
 msgid "Organisations"
 msgstr "Organisaties"
 
-#: .\organisations\forms.py:10 .\organisations\forms.py:126
+#: .\organisations\forms.py:12 .\organisations\forms.py:134
 msgid "The two password fields didn't match."
 msgstr "De twee wachtwoordvelden kwamen niet overeen."
 
-#: .\organisations\forms.py:12 .\organisations\forms.py:39
-#: .\organisations\forms.py:63 .\organisations\forms.py:130 .\users\forms.py:8
+#: .\organisations\forms.py:14 .\organisations\forms.py:41
+#: .\organisations\forms.py:64 .\organisations\forms.py:138 .\users\forms.py:8
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: .\organisations\forms.py:13 .\users\forms.py:9
+#: .\organisations\forms.py:15 .\users\forms.py:9
 msgid "Password confirmation"
 msgstr "Bevestiging wachtwoord"
 
-#: .\organisations\forms.py:14 .\organisations\forms.py:136 .\users\forms.py:10
+#: .\organisations\forms.py:16 .\organisations\forms.py:144 .\users\forms.py:10
 msgid "Enter the same password as above, for verification."
 msgstr "Voer ter verificatie nogmaals het wachtwoord in."
 
-#: .\organisations\forms.py:40
+#: .\organisations\forms.py:42
 msgid ""
 "Raw passwords are not stored, so there is no way to see this user's "
 "password, but you can change the password using <a href=\"password/\">this "
@@ -71,7 +71,7 @@ msgstr ""
 "deze gebruiker niet zien. U kunt het wel wijzigen via <a href=\"password/"
 "\">dit formulier</a>."
 
-#: .\organisations\forms.py:70
+#: .\organisations\forms.py:78
 #, fuzzy
 #| msgid ""
 #| "Please enter a correct %(name)s and password. Note that both fields are "
@@ -83,15 +83,15 @@ msgstr ""
 "Voer de correcte %(name)s en wachtwoord in. Let op dat beide velden "
 "hoofdlettergevoelig zijn."
 
-#: .\organisations\forms.py:72
+#: .\organisations\forms.py:80
 msgid "This account is inactive."
 msgstr "Dit account is inactief"
 
-#: .\organisations\forms.py:134
+#: .\organisations\forms.py:142
 msgid "Password (again)"
 msgstr "Wachtwoord (herhaling)"
 
-#: .\organisations\models.py:10 .\surveys\models.py:6
+#: .\organisations\models.py:10 .\surveys\models.py:20
 msgid "name"
 msgstr "naam"
 
@@ -136,7 +136,7 @@ msgid "user-organisation-links"
 msgstr "organisaties"
 
 #: .\organisations\templates\organisations\change_password.html:14
-#: .\templates\_base_post_login.html:15
+#: .\templates\_base_post_login.html:17
 msgid "Home"
 msgstr "Home"
 
@@ -145,94 +145,110 @@ msgstr "Home"
 msgid "Change password"
 msgstr "Verander wachtwoord"
 
+#: .\organisations\views.py:19
+#, python-format
+msgid "You are now a member of %(organisation)s."
+msgstr "Je bent nu een lid van %(organisation)s."
+
 #: .\surveys\apps.py:7
 msgid "surveys"
 msgstr "vragenlijsten"
 
+#: .\surveys\models.py:7
+msgid "Power"
+msgstr "Kracht"
+
+#: .\surveys\models.py:8
+msgid "Flexibility"
+msgstr "Flexibiliteit"
+
 #: .\surveys\models.py:9
+msgid "Adventure"
+msgstr "Avontuur"
+
+#: .\surveys\models.py:10
+msgid "Vision"
+msgstr "Visie"
+
+#: .\surveys\models.py:11
+msgid "Empathy"
+msgstr "Empathie"
+
+#: .\surveys\models.py:12
+msgid "Trust"
+msgstr "Vertrouwen"
+
+#: .\surveys\models.py:13
+msgid "Rest"
+msgstr "Rust"
+
+#: .\surveys\models.py:14
+msgid "Authenticity"
+msgstr "Authenticiteit"
+
+#: .\surveys\models.py:15
+msgid "Research"
+msgstr "Onderzoek"
+
+#: .\surveys\models.py:23
 #, fuzzy
 #| msgid "surveys"
 msgid "Survey"
 msgstr "Vragenlijst"
 
-#: .\surveys\models.py:10
+#: .\surveys\models.py:24
 #, fuzzy
 #| msgid "surveys"
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
-#: .\surveys\models.py:15
-msgid "Power"
-msgstr "Kracht"
-
-#: .\surveys\models.py:16
-msgid "Flexibility"
-msgstr "Flexibiliteit"
-
-#: .\surveys\models.py:17
-msgid "Adventure"
-msgstr "Avontuur"
-
-#: .\surveys\models.py:18
-msgid "Vision"
-msgstr "Visie"
-
-#: .\surveys\models.py:19
-msgid "Empathy"
-msgstr "Empathie"
-
-#: .\surveys\models.py:20
-msgid "Trust"
-msgstr "Vertrouwen"
-
-#: .\surveys\models.py:21
-msgid "Rest"
-msgstr "Rust"
-
-#: .\surveys\models.py:22
-msgid "Authenticity"
-msgstr "Authenticiteit"
-
-#: .\surveys\models.py:23
-msgid "Research"
-msgstr "Onderzoek"
-
-#: .\surveys\models.py:25
+#: .\surveys\models.py:31
 msgid "level"
 msgstr "level"
 
-#: .\surveys\models.py:26
+#: .\surveys\models.py:32
 #, fuzzy
 #| msgid "surveys"
 msgid "survey"
 msgstr "vragenlijst"
 
-#: .\surveys\models.py:27
+#: .\surveys\models.py:33
 msgid "question"
 msgstr "vraag"
 
-#: .\surveys\models.py:30
+#: .\surveys\models.py:36 .\surveys\models.py:44
 msgid "Question"
 msgstr "Vraag"
 
-#: .\surveys\models.py:31
+#: .\surveys\models.py:37
 msgid "Questions"
 msgstr "Vragen"
 
-#: .\surveys\templates\surveys\home.html:6
+#: .\surveys\models.py:45 .\surveys\models.py:53
+msgid "Answer"
+msgstr "Antwoord"
+
+#: .\surveys\models.py:54
+msgid "Answers"
+msgstr "Antwoorden"
+
+#: .\surveys\templates\surveys\home.html:5
 msgid "Start Survey!"
 msgstr "Start Vragenlijst!"
 
-#: .\surveys\views.py:26
-#, python-format
-msgid "You are now a member of %(organisation)s."
-msgstr "Je bent nu een lid van %(organisation)s."
+#: .\surveys\templates\surveys\survey.html:31
+msgid "Previous"
+msgstr "Vorige"
 
-#: .\templates\_base_post_login.html:18
+#: .\surveys\templates\surveys\survey.html:33
+msgid "Next"
+msgstr "Volgende"
+
+#: .\templates\_base_post_login.html:21
 msgid "Admin page"
 msgstr "Administrator"
 
-#: .\templates\_base_post_login.html:21
+#: .\templates\_base_post_login.html:24
 msgid "Log Out"
 msgstr "Afmelden"
 
@@ -247,3 +263,28 @@ msgstr "Belangrijke data"
 #: .\users\apps.py:7
 msgid "users"
 msgstr "gebruikers"
+
+#: .\users\templates\auth\login.html:6
+#, fuzzy
+#| msgid "Log Out"
+msgid "Log In"
+msgstr "Aanmelden"
+
+#: .\users\templates\auth\logout.html:6
+msgid "You've been logged out!"
+msgstr "Je bent afgemeld!"
+
+#: .\users\templates\auth\logout.html:9
+#, python-format
+msgid ""
+"\n"
+"            You will be automatically redirected to the <a href="
+"\"%(login_url)s\">login page</a> within\n"
+"            <span id=\"timer\">5</span> seconds.\n"
+"        "
+msgstr ""
+"\n"
+"            Je wordt automatisch doorgestuurd naar de <a href="
+"\"%(login_url)s\">aanmeld pagina</a> binnen\n"
+"            <span id=\"timer\">5</span> seconden.\n"
+"        "

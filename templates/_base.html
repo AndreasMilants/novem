@@ -36,8 +36,7 @@
     </script>
 </head>
 <body>
-<section>
-    <div id="nav-open" class="material-icons visible">menu</div>
+<article>
     {% if messages %}
         <section>
             <ul>
@@ -62,9 +61,7 @@
     {% endif %}
     {% block content %}
     {% endblock content %}
-</section>
-<nav id="nav">
-    {% block nav %}{% endblock nav %}
-</nav>
+</article>
+{% block nav %}{% endblock nav %}
 </body>
 </html>

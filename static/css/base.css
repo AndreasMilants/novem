@@ -104,12 +104,49 @@ nav li {
     background: #042a61;
 }
 
-.button {
+form label, form input {
+    display: block;
+    min-width: 80%;
+    margin-bottom: .6rem;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input, form textarea {
+    border: 1px solid #DDDDDD;
+    padding: .3rem;
+}
+
+.helptext {
+    font-size: .7rem;
+    color: #777799;
+}
+
+form ul {
+    margin-left: .3rem;
+    padding: 0;
+    list-style-type: square;
+}
+
+form ul li {
+    font-size: .7rem;
+    color: #777799;
+}
+
+form .errorlist li {
+    color: red;
+}
+
+form button {
     padding: 1rem;
     border-radius: 2px;
     background-color: #042a61;
     color: white;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
 article {
@@ -128,9 +165,7 @@ article {
     background: transparent;
     outline: none;
     border: 1px solid #042a61;
-}
-
-.slider input:hover {
+    padding: 0;
 }
 
 .slider input::-webkit-slider-thumb {
@@ -190,12 +225,18 @@ fieldset {
 
 .survey-next-buttons button {
     margin: 3rem 0 0 1rem;
+}
+
+.button.only-button {
+    margin-top: 3rem;
+}
+
+.button {
     padding: 1rem;
     border-radius: 2px;
     background-color: #042a61;
     color: white;
     text-decoration: none;
-    border: none;
 }
 
 @media screen and (min-width: 769px) {
@@ -209,7 +250,7 @@ fieldset {
         margin: 3rem;
     }
 
-    body > section {
+    body > article {
         flex: 1;
     }
 
@@ -232,5 +273,13 @@ fieldset {
     .survey .q {
         display: grid;
         grid-template-columns: 2fr 1fr;
+    }
+
+    form.survey {
+        max-width: 1200px;
+    }
+
+    form {
+        max-width: 600px;
     }
 }
