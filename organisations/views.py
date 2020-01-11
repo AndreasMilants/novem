@@ -6,7 +6,6 @@ from .models import OrganisationUserLink, Organisation
 from django.utils.translation import ugettext_lazy as _
 
 
-
 @login_required
 def add_organisation(request):
     if request.method == "POST":
@@ -19,6 +18,9 @@ def add_organisation(request):
             messages.success(request, _('You are now a member of %(organisation)s.') % {
                 'organisation': model.organisation,
             })
+            next_page = request.GET.get("next")
+            if next_page:
+                return redirect(next_page)
             return redirect('home')
     else:
         form = OrganisationAuthenticationForm()

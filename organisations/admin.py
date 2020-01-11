@@ -78,11 +78,11 @@ class OrganisationAdmin(admin.ModelAdmin):
             form = self.change_password_form(org)
 
         fieldsets = [(None, {'fields': list(form.base_fields)})]
-        adminForm = admin.helpers.AdminForm(form, fieldsets, {})
+        admin_form = admin.helpers.AdminForm(form, fieldsets, {})
 
         context = {
             'title': _('Change password: %s') % escape(org.name),
-            'adminForm': adminForm,
+            'adminForm': admin_form,
             'form_url': form_url,
             'form': form,
             'is_popup': (IS_POPUP_VAR in request.POST or
@@ -105,3 +105,4 @@ class OrganisationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Organisation, OrganisationAdmin)
+admin.site.register(OrganisationUserLink)
