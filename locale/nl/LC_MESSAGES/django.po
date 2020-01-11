@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-10 18:53+0100\n"
+"POT-Creation-Date: 2020-01-11 14:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,6 @@ msgstr ""
 "\">dit formulier</a>."
 
 #: .\organisations\forms.py:78
-#, fuzzy
 #| msgid ""
 #| "Please enter a correct %(name)s and password. Note that both fields are "
 #| "case-sensitive."
@@ -80,7 +79,7 @@ msgid ""
 "Please enter a correct organisation and password. Note that both fields are "
 "case-sensitive."
 msgstr ""
-"Voer de correcte %(name)s en wachtwoord in. Let op dat beide velden "
+"Voer de correcte organisatie en wachtwoord in. Let op dat beide velden "
 "hoofdlettergevoelig zijn."
 
 #: .\organisations\forms.py:80
@@ -91,7 +90,7 @@ msgstr "Dit account is inactief"
 msgid "Password (again)"
 msgstr "Wachtwoord (herhaling)"
 
-#: .\organisations\models.py:10 .\surveys\models.py:20
+#: .\organisations\models.py:10 .\surveys\models.py:22
 msgid "name"
 msgstr "naam"
 
@@ -112,31 +111,26 @@ msgid "Organisation"
 msgstr "Organisatie"
 
 #: .\organisations\models.py:65 .\organisations\models.py:67
-#, fuzzy
 #| msgid "Organisations"
 msgid "organisation"
 msgstr "organisaties"
 
 #: .\organisations\models.py:67
-#, fuzzy
 #| msgid "users"
 msgid "user"
-msgstr "gebruikers"
+msgstr "gebruiker"
 
 #: .\organisations\models.py:70
-#, fuzzy
 #| msgid "Organisations"
 msgid "user-organisation-link"
-msgstr "organisaties"
+msgstr "gebruiker-organisatie-link"
 
 #: .\organisations\models.py:71
-#, fuzzy
 #| msgid "Organisations"
 msgid "user-organisation-links"
-msgstr "organisaties"
+msgstr "gebruiker-organisatie-link"
 
 #: .\organisations\templates\organisations\change_password.html:14
-#: .\templates\_base_post_login.html:17
 msgid "Home"
 msgstr "Home"
 
@@ -145,7 +139,7 @@ msgstr "Home"
 msgid "Change password"
 msgstr "Verander wachtwoord"
 
-#: .\organisations\views.py:19
+#: .\organisations\views.py:18
 #, python-format
 msgid "You are now a member of %(organisation)s."
 msgstr "Je bent nu een lid van %(organisation)s."
@@ -154,85 +148,77 @@ msgstr "Je bent nu een lid van %(organisation)s."
 msgid "surveys"
 msgstr "vragenlijsten"
 
-#: .\surveys\models.py:7
+#: .\surveys\models.py:9
 msgid "Power"
 msgstr "Kracht"
 
-#: .\surveys\models.py:8
+#: .\surveys\models.py:10
 msgid "Flexibility"
 msgstr "Flexibiliteit"
 
-#: .\surveys\models.py:9
+#: .\surveys\models.py:11
 msgid "Adventure"
 msgstr "Avontuur"
 
-#: .\surveys\models.py:10
+#: .\surveys\models.py:12
 msgid "Vision"
 msgstr "Visie"
 
-#: .\surveys\models.py:11
+#: .\surveys\models.py:13
 msgid "Empathy"
 msgstr "Empathie"
 
-#: .\surveys\models.py:12
+#: .\surveys\models.py:14
 msgid "Trust"
 msgstr "Vertrouwen"
 
-#: .\surveys\models.py:13
+#: .\surveys\models.py:15
 msgid "Rest"
 msgstr "Rust"
 
-#: .\surveys\models.py:14
+#: .\surveys\models.py:16
 msgid "Authenticity"
 msgstr "Authenticiteit"
 
-#: .\surveys\models.py:15
+#: .\surveys\models.py:17
 msgid "Research"
 msgstr "Onderzoek"
 
-#: .\surveys\models.py:23
-#, fuzzy
+#: .\surveys\models.py:26
 #| msgid "surveys"
 msgid "Survey"
 msgstr "Vragenlijst"
 
-#: .\surveys\models.py:24
-#, fuzzy
-#| msgid "surveys"
-msgid "Surveys"
-msgstr "Vragenlijsten"
-
-#: .\surveys\models.py:31
+#: .\surveys\models.py:40
 msgid "level"
 msgstr "level"
 
-#: .\surveys\models.py:32
-#, fuzzy
+#: .\surveys\models.py:41
 #| msgid "surveys"
 msgid "survey"
 msgstr "vragenlijst"
 
-#: .\surveys\models.py:33
+#: .\surveys\models.py:42
 msgid "question"
 msgstr "vraag"
 
-#: .\surveys\models.py:36 .\surveys\models.py:44
+#: .\surveys\models.py:45 .\surveys\models.py:53
 msgid "Question"
 msgstr "Vraag"
 
-#: .\surveys\models.py:37
+#: .\surveys\models.py:46
 msgid "Questions"
 msgstr "Vragen"
 
-#: .\surveys\models.py:45 .\surveys\models.py:53
+#: .\surveys\models.py:54 .\surveys\models.py:62
 msgid "Answer"
 msgstr "Antwoord"
 
-#: .\surveys\models.py:54
+#: .\surveys\models.py:63
 msgid "Answers"
 msgstr "Antwoorden"
 
-#: .\surveys\templates\surveys\home.html:5
+#: .\surveys\templates\surveys\home.html:6
 msgid "Start Survey!"
 msgstr "Start Vragenlijst!"
 
@@ -244,11 +230,19 @@ msgstr "Vorige"
 msgid "Next"
 msgstr "Volgende"
 
-#: .\templates\_base_post_login.html:21
+#: .\surveys\models.py:27 .\templates\_base_post_login.html:18
+msgid "Surveys"
+msgstr "Vragenlijsten"
+
+#: .\templates\_base_post_login.html:22
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: .\templates\_base_post_login.html:27
 msgid "Admin page"
 msgstr "Administrator"
 
-#: .\templates\_base_post_login.html:24
+#: .\templates\_base_post_login.html:30
 msgid "Log Out"
 msgstr "Afmelden"
 
@@ -265,7 +259,6 @@ msgid "users"
 msgstr "gebruikers"
 
 #: .\users\templates\auth\login.html:6
-#, fuzzy
 #| msgid "Log Out"
 msgid "Log In"
 msgstr "Aanmelden"
@@ -284,7 +277,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            Je wordt automatisch doorgestuurd naar de <a href="
-"\"%(login_url)s\">aanmeld pagina</a> binnen\n"
+"            Je wordt automatisch doorgestuurd naar de <a href=\"%(login_url)s"
+"\">aanmeld pagina</a> binnen\n"
 "            <span id=\"timer\">5</span> seconden.\n"
 "        "

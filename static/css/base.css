@@ -7,10 +7,6 @@ body {
     min-height: 100vh;
 }
 
-h1, h2 {
-    font-family: 'Anton', sans-serif;
-}
-
 #nav-open, #nav-close {
     display: none;
     position: fixed;
@@ -36,15 +32,6 @@ h1, h2 {
 
 .navigation li:hover {
     background: #3595f6;
-}
-
-@-webkit-keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(180deg);
-    }
 }
 
 nav {
@@ -150,7 +137,7 @@ form button {
 }
 
 article {
-    margin: .5rem;
+    margin: 3rem .5rem .5rem .5rem;
 }
 
 .survey p {
@@ -227,16 +214,56 @@ fieldset {
     margin: 3rem 0 0 1rem;
 }
 
-.button.only-button {
-    margin-top: 3rem;
-}
-
 .button {
     padding: 1rem;
     border-radius: 2px;
     background-color: #042a61;
     color: white;
     text-decoration: none;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.messages {
+    list-style-type: none;
+    max-height: 500px;
+    overflow: hidden;
+    transition: max-height 1s 11s, opacity 3s 10s ease;
+}
+
+.messages.disappear {
+    opacity: 0;
+    max-height: 0;
+}
+
+.messages li {
+    margin: 1rem 0;
+    padding: .5rem 1rem;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.messages .error {
+    background-color: #CC0000;
+}
+
+.messages .success {
+    background-color: #00CC00;
+}
+
+.messages .info {
+    background-color: #3595f6;
+}
+
+.statistics {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    text-align: center;
 }
 
 @media screen and (min-width: 769px) {
@@ -270,6 +297,10 @@ fieldset {
         display: none;
     }
 
+    #nav-open.visible, #nav-close.visible {
+        display: none;
+    }
+
     .survey .q {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -281,5 +312,19 @@ fieldset {
 
     form {
         max-width: 600px;
+    }
+
+    .statistics {
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
     }
 }

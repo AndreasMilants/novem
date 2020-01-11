@@ -1,3 +1,4 @@
+from django.db.models import Avg, Q
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -25,8 +26,7 @@ def survey_view(request, page):
             for form in form_set:
                 if form.is_valid():
                     try:
-                        model = Answer.objects.get().filter(question=form.cleaned_data.get('question'),
-                                                            user=request.user)
+                        model = Answer.objects.get(question=form.cleaned_data.get('question'), user=request.user)
                         model.answer = form.cleaned_data.get('answer')
                     except Answer.DoesNotExist:
                         model = form.save(commit=False)
@@ -51,8 +51,19 @@ def survey_view(request, page):
                    'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey})
 
 
-"""
 @login_required
-def get_survey_stats(request, survey):
-    personal_stats =
-"""
+@user_is_linked_to_organisation
+def get_personal_survey_stats(request, survey):
+    personal_stats = [
+        {'level': level[1], 'avg': Answer.objects.filter(user=request.user, question__survey__slug=survey,
+                                                         question__level=level[0]).aggregate(Avg('answer'))[
+            'answer__avg']} for level in LEVEL_CHOICES]
+    return render(request, 'surveys/see-personal-statistics-survey.html',
+                  {'stats': personal_stats, 'min': -50, 'max': 50, 'survey': Survey.objects.get(slug=survey)})
+
+
+@login_required
+@user_is_linked_to_organisation
+def personal_statistics(request):
+    surveys = Survey.objects.filter(question__answer__user=request.user).distinct()
+    return render(request, 'surveys/personal-statistics.html', {'surveys': surveys})

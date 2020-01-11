@@ -2,5 +2,7 @@
 {% load i18n static %}
 
 {% block content %}
-    <a class="button only-button" href="{% url 'survey' page=1 %}">{% trans 'Start Survey!' %}</a>
+    <div class="center-content">
+        <a class="button" href="{% url 'survey' page=1 %}">{% trans 'Start Survey!' %}</a>
+    </div>
 {% endblock content %}
