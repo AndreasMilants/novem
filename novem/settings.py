@@ -121,33 +121,15 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '54d33vo75$9%&n=9#hv$x!+(#+d5wc$o_46zbixv)z_5t07x9g'
 
-    ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
-    # Database
+# Database
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['POSTGRES_NAME'],
-            'USER': os.environ['POSTGRES_USER'],
-            'PASSWORD': os.environ['POSTGRES_PASSWORD'],
-            'HOST': os.environ['POSTGRES_HOST'],
-            'PORT': 5432,
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
     }
-else:
-    SECRET_KEY = '54d33vo75$9%&n=9#hv$x!+(#+d5wc$o_46zbixv)z_5t07x9g'
-
-    ALLOWED_HOSTS = []
-
-    # Database
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
-        }
-    }
+}
