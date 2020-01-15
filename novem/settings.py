@@ -2,7 +2,7 @@ import os
 from django.utils.translation import ugettext_lazy as _
 import socket
 
-DOCKER = os.environ.get('docker', default='false') == 'true'
+DOCKER = os.environ.get('DOCKER', default='false') == 'true'
 
 if DOCKER:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
