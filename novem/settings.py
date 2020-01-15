@@ -31,14 +31,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
 ]
-
-if DOCKER:
-    INSTALLED_APPS.append('whitenoise.runserver_nostatic')  # This needs to be above staticfiles
-INSTALLED_APPS.append('django.contrib.staticfiles')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -48,9 +47,6 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
-
-if DOCKER:
-    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')  # This might not work because it should be behind SecurityMiddleware
 
 ROOT_URLCONF = 'novem.urls'
 
@@ -156,10 +152,10 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'novem_testing',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 5432
     }
 }
