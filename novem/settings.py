@@ -1,6 +1,7 @@
 import os
 from django.utils.translation import ugettext_lazy as _
 import socket
+import dj_database_url
 
 DOCKER = os.environ.get('DOCKER', default='false') == 'true'
 
@@ -143,7 +144,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
-SECRET_KEY = '54d33vo75$9%&n=9#hv$x!+(#+d5wc$o_46zbixv)z_5t07x9g'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='54d33vo75$9%&n=9#hv$x!+(#+d5wc$o_46zbixv)z_5t07x9g')
 
 ALLOWED_HOSTS = ['*']
 
@@ -170,3 +171,6 @@ if ENVIRONMENT != 'development':
     SECURE_HSTS_DOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

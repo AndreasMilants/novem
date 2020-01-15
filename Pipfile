@@ -11,6 +11,7 @@ psycopg2-binary = "==2.8.4"
 django-debug-toolbar = "*"
 whitenoise = "*"
 gunicorn = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.7"
