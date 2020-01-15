@@ -6,7 +6,7 @@ from django.forms import formset_factory
 class CreateSurveyForm(forms.ModelForm):
     class Meta:
         model = Survey
-        exclude = []
+        exclude = ['slug']
 
 
 class AnswerForm(forms.ModelForm):

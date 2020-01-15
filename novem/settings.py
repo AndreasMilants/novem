@@ -1,25 +1,41 @@
 import os
 from django.utils.translation import ugettext_lazy as _
+import socket
+
+DOCKER = os.environ.get('docker', default='false') == 'true'
+
+if DOCKER:
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+else:
+    INTERNAL_IPS = ['127.0.0.1']
+
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='production')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Application definition
 
-DEBUG = True
+DEBUG = ENVIRONMENT == 'development'
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'organisations.apps.OrganisationsConfig',
     'surveys.apps.SurveysConfig',
 
+    'debug_toolbar',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
+
+if DOCKER:
+    INSTALLED_APPS.append('whitenoise.runserver_nostatic')  # This needs to be above staticfiles
+INSTALLED_APPS.append('django.contrib.staticfiles')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -29,14 +45,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
+
+if DOCKER:
+    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')  # This might not work because it should be behind SecurityMiddleware
 
 ROOT_URLCONF = 'novem.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../../templates'), ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,6 +99,11 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
 
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -91,7 +117,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, '../../locale'),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 LANGUAGES = (
     ('en', _('English')),
@@ -106,7 +132,7 @@ LANGUAGES = (
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join("static"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -123,13 +149,28 @@ LOGIN_REDIRECT_URL = 'home'
 
 SECRET_KEY = '54d33vo75$9%&n=9#hv$x!+(#+d5wc$o_46zbixv)z_5t07x9g'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Database
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'novem_testing',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
+
+if ENVIRONMENT != 'development':
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 314536000
+    SECURE_HSTS_DOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True

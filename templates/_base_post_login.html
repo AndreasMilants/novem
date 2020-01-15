@@ -15,11 +15,11 @@
         </section>
         <ul class="navigation">
             <li>
-                <a href="{% url 'home' %}"><span class="material-icons">home</span><span>{% trans 'Surveys' %}</span></a>
+                <a href="{% url 'home' %}"><span class="material-icons">poll</span><span>{% trans 'Surveys' %}</span></a>
             </li>
             <li>
                 <a href="{% url 'personal-statistics' %}">
-                    <span class="material-icons">poll</span><span>{% trans 'Statistics' %}</span>
+                    <span class="material-icons">trending_up</span><span>{% trans 'Statistics' %}</span>
                 </a>
             </li>
             {% if user.is_superuser %}

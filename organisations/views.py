@@ -7,14 +7,13 @@ from django.utils.translation import ugettext_lazy as _
 
 
 @login_required
-def add_organisation(request):
+def link_to_organisation(request):
     if request.method == "POST":
         form = OrganisationAuthenticationForm(request.POST)
         if form.is_valid():
             model = form.save(commit=False)
-            org_user_link = OrganisationUserLink(organisation=Organisation.objects.get(name=model.organisation),
-                                                 user=request.user)
-            org_user_link.save()
+            model.user = request.user
+            model.save()
             messages.success(request, _('You are now a member of %(organisation)s.') % {
                 'organisation': model.organisation,
             })

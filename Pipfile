@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 django = {extras = ["argon2"],version = "*"}
 psycopg2-binary = "==2.8.4"
+django-debug-toolbar = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

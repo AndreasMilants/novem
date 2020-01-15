@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 
 
 class Organisation(models.Model):
-    name = models.CharField(_('name'), primary_key=True, unique=True, blank=False, db_index=True, max_length=255)
+    name = models.CharField(_('name'), unique=True, blank=False, db_index=True, max_length=255)
     password = models.CharField(_('password'), max_length=128)
     is_active = models.BooleanField(_('is active'), default=True, blank=False,
                                     help_text=_('Users can register with this organisation'))

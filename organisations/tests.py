@@ -24,13 +24,14 @@ class OrganisationTests(TestCase):
 class LinkToOrganisationTests(TestCase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.org = 'test_org'
+        self.org_name = 'test_org'
         self.password = 'test123'
 
     def setUp(self):
-        form_data = {'name': self.org, 'password1': self.password, 'password2': self.password}
+        form_data = {'name': self.org_name, 'password1': self.password, 'password2': self.password}
         form = OrganisationCreateForm(data=form_data)
-        form.save()
+        org = form.save()
+        self.org = org.id
 
     @staticmethod
     def check_pass(org, password):

@@ -46,6 +46,9 @@ def survey_view(request, page):
                        Question.objects.filter(level=page, survey=survey)]
         form_set = get_answer_form_set(answers)
 
+    if int(page) > len(LEVEL_CHOICES):
+        return redirect('personal-statistics')
+
     return render(request, 'surveys/survey.html',
                   {'page': int(page), 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
                    'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey})
