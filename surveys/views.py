@@ -1,8 +1,6 @@
-from django.db.models import Avg, Q
+from django.db.models import Avg
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext_lazy as _
 from .models import Question, LEVEL_CHOICES, Survey, Answer
 from .forms import AnswerFormSet, get_answer_form_set
 from organisations.decorators import user_is_linked_to_organisation, user_is_linked_to_section

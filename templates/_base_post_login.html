@@ -5,21 +5,28 @@
     <nav id="nav">
         <div id="nav-open" class="material-icons visible">menu</div>
         <div id="nav-close" class="material-icons">close</div>
-        <section class="account-card">
-            <!--<span>{{ user.email }}</span>-->
-            <ul>
-                {% for organisation in user.organisationuserlink_set.all %}
-                    <li><span class="material-icons">group</span>{{ organisation.organisation }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+        {% if user.organisationuserlink_set.all %}
+            <section class="account-card">
+                <ul>
+                    {% for organisation in user.organisationuserlink_set.all %}
+                        <li>
+                            <div><span class="material-icons">group</span>{{ organisation.organisation }}</div>
+                            {% for section in user.sectionuserlink_set.all %}
+                                <span class="section">-{{ section.section.name }}</span>
+                            {% endfor %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
         <ul class="navigation">
             <li>
-                <a href="{% url 'home' %}"><span class="material-icons">poll</span><span>{% trans 'Surveys' %}</span></a>
+                <a href="{% url 'home' %}"><span
+                        class="material-icons">poll</span><span>{% trans 'Surveys' %}</span></a>
             </li>
             <li>
                 <a href="{% url 'personal-statistics' %}">
-                    <span class="material-icons">trending_up</span><span>{% trans 'Statistics' %}</span>
+                    <span class="material-icons">show_chart</span><span>{% trans 'Statistics' %}</span>
                 </a>
             </li>
             {% if user.is_superuser %}

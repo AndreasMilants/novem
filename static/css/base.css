@@ -87,6 +87,16 @@ nav li {
     background-color: #042a61;
 }
 
+.account-card li {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-card .section {
+    margin-left: 4.5rem;
+}
+
+
 #current {
     background: #042a61;
 }

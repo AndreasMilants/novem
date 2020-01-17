@@ -11,7 +11,7 @@ from django.shortcuts import resolve_url
 
 @login_required
 def link_to_organisation(request):
-    # We've allowed multiple to be linked to users in the future with the way our models are set up.
+    # We've allowed multiple organisations to be linked to users in the future with the way our models are set up.
     # But at this moment we don't want users to be able to link to multiple organisations, so we raise PermissionDenied
     if request.user.organisationuserlink_set.all():
         raise PermissionDenied()
