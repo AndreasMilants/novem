@@ -91,7 +91,7 @@ nav li {
     background: #042a61;
 }
 
-form label, form input {
+form label, form input, form select {
     display: block;
     min-width: 80%;
     margin-bottom: .6rem;
@@ -101,7 +101,7 @@ form label {
     font-weight: bold;
 }
 
-form input, form textarea {
+form input, form textarea, form select {
     border: 1px solid #DDDDDD;
     padding: .3rem;
 }
@@ -230,6 +230,7 @@ fieldset {
 }
 
 .messages {
+    padding: 0;
     list-style-type: none;
     max-height: 500px;
     overflow: hidden;

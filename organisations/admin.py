@@ -1,5 +1,5 @@
 from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm
-from .models import Organisation, OrganisationUserLink
+from .models import Organisation, OrganisationUserLink, Section, SectionUserLink
 from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib import admin, messages
 from django.contrib.auth import update_session_auth_hash
@@ -106,3 +106,5 @@ class OrganisationAdmin(admin.ModelAdmin):
 
 admin.site.register(Organisation, OrganisationAdmin)
 admin.site.register(OrganisationUserLink)
+admin.site.register(Section)
+admin.site.register(SectionUserLink)

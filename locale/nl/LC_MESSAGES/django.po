@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-11 14:35+0100\n"
+"POT-Creation-Date: 2020-01-17 13:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\novem\settings.py:115
+#: .\novem\no_docker_settings.py:113 .\novem\settings.py:120
 msgid "English"
 msgstr "Engels"
 
-#: .\novem\settings.py:116
+#: .\novem\no_docker_settings.py:114 .\novem\settings.py:121
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -44,12 +44,20 @@ msgstr "Verander wachtwoord: %s"
 msgid "Organisations"
 msgstr "Organisaties"
 
-#: .\organisations\forms.py:12 .\organisations\forms.py:134
+#: .\organisations\decorators.py:12
+msgid "You have to link to an organisation before you can access this page"
+msgstr "Je moet aan een organisatie linken voordat je deze pagina kan bekijken"
+
+#: .\organisations\decorators.py:24
+msgid "You have to choose a section before you can access this page"
+msgstr "Je moet een afdeling kiezen voor je deze pagina kan bekijken"
+
+#: .\organisations\forms.py:12 .\organisations\forms.py:161
 msgid "The two password fields didn't match."
 msgstr "De twee wachtwoordvelden kwamen niet overeen."
 
 #: .\organisations\forms.py:14 .\organisations\forms.py:41
-#: .\organisations\forms.py:64 .\organisations\forms.py:138 .\users\forms.py:8
+#: .\organisations\forms.py:64 .\organisations\forms.py:165 .\users\forms.py:8
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -57,7 +65,7 @@ msgstr "Wachtwoord"
 msgid "Password confirmation"
 msgstr "Bevestiging wachtwoord"
 
-#: .\organisations\forms.py:16 .\organisations\forms.py:144 .\users\forms.py:10
+#: .\organisations\forms.py:16 .\organisations\forms.py:171 .\users\forms.py:10
 msgid "Enter the same password as above, for verification."
 msgstr "Voer ter verificatie nogmaals het wachtwoord in."
 
@@ -72,9 +80,6 @@ msgstr ""
 "\">dit formulier</a>."
 
 #: .\organisations\forms.py:78
-#| msgid ""
-#| "Please enter a correct %(name)s and password. Note that both fields are "
-#| "case-sensitive."
 msgid ""
 "Please enter a correct organisation and password. Note that both fields are "
 "case-sensitive."
@@ -86,11 +91,11 @@ msgstr ""
 msgid "This account is inactive."
 msgstr "Dit account is inactief"
 
-#: .\organisations\forms.py:142
+#: .\organisations\forms.py:169
 msgid "Password (again)"
 msgstr "Wachtwoord (herhaling)"
 
-#: .\organisations\models.py:10 .\surveys\models.py:22
+#: .\organisations\models.py:10 .\surveys\models.py:23
 msgid "name"
 msgstr "naam"
 
@@ -111,24 +116,51 @@ msgid "Organisation"
 msgstr "Organisatie"
 
 #: .\organisations\models.py:65 .\organisations\models.py:67
-#| msgid "Organisations"
+#: .\organisations\models.py:80 .\organisations\models.py:96
 msgid "organisation"
 msgstr "organisaties"
 
-#: .\organisations\models.py:67
-#| msgid "users"
-msgid "user"
-msgstr "gebruiker"
-
 #: .\organisations\models.py:70
-#| msgid "Organisations"
-msgid "user-organisation-link"
-msgstr "gebruiker-organisatie-link"
+#| msgid "user-organisation-link"
+msgid "User-organisation-link"
+msgstr "Gebruiker-organisatie-link"
 
 #: .\organisations\models.py:71
-#| msgid "Organisations"
-msgid "user-organisation-links"
-msgstr "gebruiker-organisatie-link"
+#| msgid "user-organisation-links"
+msgid "User-organisation-links"
+msgstr "Gebruiker-organisatie-link"
+
+#: .\organisations\models.py:82
+msgid "parent_section"
+msgstr "ouder_afdeling"
+
+#: .\organisations\models.py:86
+#| msgid "question"
+msgid "Section"
+msgstr "Afdeling"
+
+#: .\organisations\models.py:87
+#| msgid "Questions"
+msgid "Sections"
+msgstr "Afdelingen"
+
+#: .\organisations\models.py:97 .\surveys\models.py:74
+#| msgid "question"
+msgid "section"
+msgstr "afdeling"
+
+#: .\organisations\models.py:100
+msgid "Section-user-link"
+msgstr "Afdeling-gebruiker-link"
+
+#: .\organisations\models.py:101
+msgid "Section-user-links"
+msgstr "Afdeling-gebruiker-links"
+
+#: .\organisations\templates\organisations\authenticate_organisation.html:6
+#| msgid "organisation"
+msgid "Log in with organisation"
+msgstr "Meld je aan bij een organisatie"
 
 #: .\organisations\templates\organisations\change_password.html:14
 msgid "Home"
@@ -139,84 +171,106 @@ msgstr "Home"
 msgid "Change password"
 msgstr "Verander wachtwoord"
 
-#: .\organisations\views.py:18
+#: .\organisations\templates\organisations\choose_section.html:6
+#| msgid "Users can register with this organisation"
+msgid "Choose a section of this organisation"
+msgstr "Kies een afdeling van deze organisatie"
+
+#: .\organisations\views.py:23
 #, python-format
 msgid "You are now a member of %(organisation)s."
 msgstr "Je bent nu een lid van %(organisation)s."
+
+#: .\organisations\views.py:50
+#| msgid "You are now a member of %(organisation)s."
+msgid "You are now a member of %(section)s."
+msgstr "Je bent nu een lid van %(section)s."
 
 #: .\surveys\apps.py:7
 msgid "surveys"
 msgstr "vragenlijsten"
 
-#: .\surveys\models.py:9
+#: .\surveys\models.py:10
 msgid "Power"
 msgstr "Kracht"
 
-#: .\surveys\models.py:10
+#: .\surveys\models.py:11
 msgid "Flexibility"
 msgstr "Flexibiliteit"
 
-#: .\surveys\models.py:11
+#: .\surveys\models.py:12
 msgid "Adventure"
 msgstr "Avontuur"
 
-#: .\surveys\models.py:12
+#: .\surveys\models.py:13
 msgid "Vision"
 msgstr "Visie"
 
-#: .\surveys\models.py:13
+#: .\surveys\models.py:14
 msgid "Empathy"
 msgstr "Empathie"
 
-#: .\surveys\models.py:14
+#: .\surveys\models.py:15
 msgid "Trust"
 msgstr "Vertrouwen"
 
-#: .\surveys\models.py:15
+#: .\surveys\models.py:16
 msgid "Rest"
 msgstr "Rust"
 
-#: .\surveys\models.py:16
+#: .\surveys\models.py:17
 msgid "Authenticity"
 msgstr "Authenticiteit"
 
-#: .\surveys\models.py:17
+#: .\surveys\models.py:18
 msgid "Research"
 msgstr "Onderzoek"
 
-#: .\surveys\models.py:26
-#| msgid "surveys"
+#: .\surveys\models.py:27
 msgid "Survey"
 msgstr "Vragenlijst"
 
-#: .\surveys\models.py:40
+#: .\surveys\models.py:28 .\templates\_base_post_login.html:18
+msgid "Surveys"
+msgstr "Vragenlijsten"
+
+#: .\surveys\models.py:41
 msgid "level"
 msgstr "level"
 
-#: .\surveys\models.py:41
-#| msgid "surveys"
+#: .\surveys\models.py:42 .\surveys\models.py:73
 msgid "survey"
 msgstr "vragenlijst"
 
-#: .\surveys\models.py:42
+#: .\surveys\models.py:43
 msgid "question"
 msgstr "vraag"
 
-#: .\surveys\models.py:45 .\surveys\models.py:53
+#: .\surveys\models.py:46 .\surveys\models.py:54
 msgid "Question"
 msgstr "Vraag"
 
-#: .\surveys\models.py:46
+#: .\surveys\models.py:47
 msgid "Questions"
 msgstr "Vragen"
 
-#: .\surveys\models.py:54 .\surveys\models.py:62
+#: .\surveys\models.py:55 .\surveys\models.py:63
 msgid "Answer"
 msgstr "Antwoord"
 
-#: .\surveys\models.py:63
+#: .\surveys\models.py:64
 msgid "Answers"
 msgstr "Antwoorden"
+
+#: .\surveys\models.py:77
+#| msgid "user-organisation-link"
+msgid "Survey-section-link"
+msgstr "Vragenlijst-afdeling-link"
+
+#: .\surveys\models.py:78
+#| msgid "user-organisation-links"
+msgid "Survey-section-links"
+msgstr "Vragenlijst-afdeling-links"
 
 #: .\surveys\templates\surveys\home.html:6
 msgid "Start Survey!"
@@ -229,10 +283,6 @@ msgstr "Vorige"
 #: .\surveys\templates\surveys\survey.html:33
 msgid "Next"
 msgstr "Volgende"
-
-#: .\surveys\models.py:27 .\templates\_base_post_login.html:18
-msgid "Surveys"
-msgstr "Vragenlijsten"
 
 #: .\templates\_base_post_login.html:22
 msgid "Statistics"
@@ -259,7 +309,6 @@ msgid "users"
 msgstr "gebruikers"
 
 #: .\users\templates\auth\login.html:6
-#| msgid "Log Out"
 msgid "Log In"
 msgstr "Aanmelden"
 
@@ -281,3 +330,7 @@ msgstr ""
 "\">aanmeld pagina</a> binnen\n"
 "            <span id=\"timer\">5</span> seconden.\n"
 "        "
+
+#~| msgid "users"
+#~ msgid "user"
+#~ msgstr "gebruiker"

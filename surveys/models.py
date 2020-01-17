@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 from django.template.defaultfilters import slugify
+from organisations.models import Section
 
 
 LEVEL_CHOICES = (
@@ -65,3 +66,16 @@ class Answer(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(str(self.user), str(self.question))
+
+
+class SurveySectionLink(models.Model):
+    """Maybe it is possible that one section has to take multiple surveys. That's why we use this table"""
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE, verbose_name=_('survey'))
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
+
+    class Meta:
+        verbose_name = _('Survey-section-link')
+        verbose_name_plural = _('Survey-section-links')
+
+    def __str__(self):
+        return '{} - {}'.format(str(self.survey), str(self.section))

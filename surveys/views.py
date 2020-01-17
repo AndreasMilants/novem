@@ -5,11 +5,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from .models import Question, LEVEL_CHOICES, Survey, Answer
 from .forms import AnswerFormSet, get_answer_form_set
-from organisations.decorators import user_is_linked_to_organisation
+from organisations.decorators import user_is_linked_to_organisation, user_is_linked_to_section
 
 
 @login_required
 @user_is_linked_to_organisation
+@user_is_linked_to_section
 def homepage(request):
     context = {}
     return render(request, 'surveys/home.html', context)
@@ -17,6 +18,7 @@ def homepage(request):
 
 @login_required
 @user_is_linked_to_organisation
+@user_is_linked_to_section
 def survey_view(request, page):
     # TODO This line should be changed to something that actually gets the correct survey
     survey = Survey.objects.all()[0]
@@ -56,6 +58,7 @@ def survey_view(request, page):
 
 @login_required
 @user_is_linked_to_organisation
+@user_is_linked_to_section
 def get_personal_survey_stats(request, survey):
     personal_stats = [
         {'level': level[1], 'avg': Answer.objects.filter(user=request.user, question__survey__slug=survey,
@@ -67,6 +70,7 @@ def get_personal_survey_stats(request, survey):
 
 @login_required
 @user_is_linked_to_organisation
+@user_is_linked_to_section
 def personal_statistics(request):
     surveys = Survey.objects.filter(question__answer__user=request.user).distinct()
     return render(request, 'surveys/personal-statistics.html', {'surveys': surveys})

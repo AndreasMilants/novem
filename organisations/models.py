@@ -64,11 +64,41 @@ class OrganisationUserLink(models.Model):
     """We use an extra table, so that in the future users can be linked to multiple organisations"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('organisation'))
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE,
-                                     verbose_name=_('organisation'), related_name=_('user'))
+                                     verbose_name=_('organisation'))
 
     class Meta:
-        verbose_name = _('user-organisation-link')
-        verbose_name_plural = _('user-organisation-links')
+        verbose_name = _('User-organisation-link')
+        verbose_name_plural = _('User-organisation-links')
 
     def __str__(self):
         return '{user} - {organisation}'.format(user=str(self.user), organisation=str(self.organisation))
+
+
+class Section(models.Model):
+    name = models.CharField(max_length=63)
+    organisation = models.ForeignKey(Organisation, null=True, blank=True, on_delete=models.CASCADE,
+                                     verbose_name=_('organisation'))
+    parent_section = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE,
+                                       verbose_name=_('parent_section'),
+                                       related_name='child_section')
+
+    class Meta:
+        verbose_name = _('Section')
+        verbose_name_plural = _('Sections')
+
+    def __str__(self):
+        return '{} - {}'.format(str(self.organisation) if self.organisation else str(self.parent_section),
+                                str(self.name))
+
+
+class SectionUserLink(models.Model):
+    """We use an extra table, so that in the future users can be linked to multiple organisations"""
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('organisation'))
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
+
+    class Meta:
+        verbose_name = _('Section-user-link')
+        verbose_name_plural = _('Section-user-links')
+
+    def __str__(self):
+        return '{} - {}'.format(str(self.user), str(self.section))

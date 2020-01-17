@@ -3,13 +3,13 @@
 
 {% block content %}
     <h2>
-        {% trans 'Log in with organisation' %}
+        {% trans 'Choose a section of this organisation' %}
     </h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <p>
-            <button type="submit">Meld je aan</button>
+            <button type="submit">Selecteer</button>
         </p>
     </form>
 {% endblock content %}

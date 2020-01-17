@@ -1,4 +1,4 @@
-from .models import Organisation, OrganisationUserLink
+from .models import Organisation, OrganisationUserLink, SectionUserLink, Section
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -65,7 +65,7 @@ class OrganisationAuthenticationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        queryset = Organisation.objects.all().filter(is_active=True)
+        queryset = Organisation.objects.filter(is_active=True)
         iterator = ModelChoiceIterator(field=self.fields['organisation'])
         iterator.queryset = queryset
         self.fields['organisation'].choices = iterator
@@ -124,6 +124,33 @@ class OrganisationAuthenticationForm(forms.ModelForm):
 
     def get_user(self):
         return self.user_cache
+
+
+class ChooseSectionForm(forms.ModelForm):
+    class Meta:
+        model = SectionUserLink
+        fields = ['section']
+
+    def __init__(self, *args, organisation=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # This query selects all sections with no more children that are linked to this organisation
+        choices = [(section.id, section.name) for section in
+                   Section.objects.raw('WITH RECURSIVE section_tree(id, name, parent_section_id, organisation_id) AS ('
+                                       '    SELECT id, name, parent_section_id, organisation_id '
+                                       '    FROM organisations_section '
+                                       '    WHERE organisation_id = %s '
+                                       'UNION ALL '
+                                       '    SELECT ss.id, ss.name, ss.parent_section_id, ss.organisation_id '
+                                       '    FROM organisations_section AS ss INNER JOIN section_tree AS '
+                                       '    st ON (ss.parent_section_id = st.id)'
+                                       ') '
+                                       'SELECT st.id, st.name, st.organisation_id, st.parent_section_id '
+                                       'FROM section_tree as st LEFT OUTER JOIN '
+                                       'organisations_section s ON(st.id = s.parent_section_id) '
+                                       'WHERE s.id is null', [organisation.id])]
+
+        self.fields['section'] = forms.ChoiceField(choices=choices)
 
 
 class AdminPasswordChangeForm(forms.Form):
