@@ -18,8 +18,8 @@ def homepage(request):
 @user_is_linked_to_organisation
 @user_is_linked_to_section
 def survey_view(request, page):
-    # TODO This line should be changed to something that actually gets the correct survey
-    survey = Survey.objects.all()[0]
+    survey = get_surveys(request)
+    print(survey)
     if request.method == "POST":
         form_set = AnswerFormSet(request.POST)
         if form_set.is_valid():
@@ -71,4 +71,27 @@ def get_personal_survey_stats(request, survey):
 @user_is_linked_to_section
 def personal_statistics(request):
     surveys = Survey.objects.filter(question__answer__user=request.user).distinct()
+    if len(surveys) == 1:
+        return redirect('see-personal-statistics', surveys[0].slug)
     return render(request, 'surveys/personal-statistics.html', {'surveys': surveys})
+
+
+def get_surveys(request):
+    """This is only a helper method. It does not return a view"""
+    surveys = Survey.objects.raw('WITH RECURSIVE section_tree(id, parent_section_id) AS ( '
+                                 '   SELECT s.id, s.parent_section_id '
+                                 '   FROM organisations_section s INNER JOIN organisations_sectionuserlink l '
+                                 '   ON (s.id = l.section_id) '
+                                 '   WHERE l.user_id = %s '
+                                 'UNION ALL '
+                                 '   SELECT ss.id, ss.parent_section_id '
+                                 '   FROM organisations_section ss INNER JOIN section_tree st '
+                                 '   ON (ss.id = st.parent_section_id)'
+                                 ') '
+                                 'SELECT su.id, su.name, su.slug '
+                                 'FROM section_tree s INNER JOIN surveys_surveysectionlink l ON (s.id = l.section_id) '
+                                 'INNER JOIN surveys_survey su ON (l.survey_id = su.id) '
+                                 'ORDER BY s.id DESC', [request.user.id])
+    # This ORDER BY goes by the presumption that a higher id means the section is lower in the tree.
+    # If this presumption is correct, we should always get the first section above us that is linked to a survey
+    return surveys[0]  # Maybe in the future this can return multiple surveys...

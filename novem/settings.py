@@ -150,7 +150,7 @@ ALLOWED_HOSTS = ['*']
 
 # Database
 
-DATABASES = {
+DATABASES = {  # Real production environment already uses another database and skips this
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',

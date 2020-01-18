@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Question, Survey, Answer
+from .models import Question, Survey, Answer, SurveySectionLink
 from .forms import CreateSurveyForm
 
 
@@ -14,3 +14,4 @@ class CreateSurveyAdmin(admin.ModelAdmin):
 
 admin.site.register(Survey, CreateSurveyAdmin)
 admin.site.register(Answer)
+admin.site.register(SurveySectionLink)
