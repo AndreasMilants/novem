@@ -6,9 +6,17 @@ from django.db.utils import IntegrityError
 
 
 class SurveyModelTests(TestCase):
+    @staticmethod
+    def save_model_throws_value_error(form):
+        try:
+            form.save()
+        except ValueError:
+            return True
+        return False
+
     def test_create(self):
         survey = Survey(name='test_13')
-        survey.save()
+        self.assertFalse(self.save_model_throws_value_error(survey))
 
 
 class QuestionModelTests(TestCase):
@@ -61,4 +69,4 @@ class AnswerModelTests(TestCase):
 
         self.assertRaises(IntegrityError, create_answer_2())
 
-# TODO form testing
+# TODO form testing, linking sections

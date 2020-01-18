@@ -83,6 +83,12 @@ class OrganisationAuthenticationForm(forms.ModelForm):
     def clean(self):
         organisation = self.cleaned_data.get('organisation')
         password = self.cleaned_data.get('password')
+        if not organisation:
+            raise forms.ValidationError(
+                self.error_messages['invalid_login'],
+                code='invalid_login',
+                params={'organisation': 'organisation'},
+            )
         try:
             if organisation and password:
                 organisation_cache = Organisation.objects.get(name=organisation)
@@ -94,16 +100,22 @@ class OrganisationAuthenticationForm(forms.ModelForm):
                     )
                 else:
                     self.confirm_registration_with_organisation_allowed(organisation_cache)
+            if not organisation.is_active:
+                raise forms.ValidationError(
+                    self.error_messages['inactive'],
+                    code='invalid_login',
+                    params={'organisation': 'organisation'},
+                )
         except ObjectDoesNotExist:
             raise forms.ValidationError(
                 self.error_messages['invalid_login'],
                 code='invalid_login',
                 params={'organisation': 'organisation'},
             )
+
         return self.cleaned_data
 
     def is_valid(self):
-        self.full_clean()
         return super().is_valid()
 
     def confirm_registration_with_organisation_allowed(self, organisation):
