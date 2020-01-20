@@ -9,11 +9,13 @@
             <section class="account-card">
                 <ul>
                     {% for organisation in user.organisationuserlink_set.all %}
+                        <span class="material-icons">group</span>
                         <li>
-                            <div><span class="material-icons">group</span>{{ organisation.organisation }}</div>
+                            <span>{{ organisation.organisation }}</span>
                             {% for section in user.sectionuserlink_set.all %}
-                                <span class="section">-{{ section.section.name }}</span>
+                                <span>-{{ section.section.name }}</span>
                             {% endfor %}
+                            <span class="email">{{ user.email }}</span>
                         </li>
                     {% endfor %}
                 </ul>

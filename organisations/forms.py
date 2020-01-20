@@ -215,3 +215,16 @@ class AdminPasswordChangeForm(forms.Form):
         return ['password']
 
     changed_data = property(_get_changed_data)
+
+
+class SectionCreationForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        exclude = []
+
+
+class SectionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = ['name']  # We don't allow the updating of links here, because this might cause problems
+        # in other functions at the moment

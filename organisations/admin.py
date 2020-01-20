@@ -1,4 +1,5 @@
-from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm
+from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm, SectionCreationForm, \
+    SectionUpdateForm
 from .models import Organisation, OrganisationUserLink, Section, SectionUserLink
 from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib import admin, messages
@@ -104,7 +105,24 @@ class OrganisationAdmin(admin.ModelAdmin):
         return TemplateResponse(request, 'organisations/change_password.html', context)
 
 
+class SectionAdmin(admin.ModelAdmin):
+    add_form = SectionCreationForm
+    form = SectionUpdateForm
+    model = Section
+    list_filter = ['name', 'organisation']
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Use special form during organisation creation
+        """
+        defaults = {}
+        if obj is None:
+            defaults['form'] = self.add_form
+        defaults.update(kwargs)
+        return super().get_form(request, obj, **defaults)
+
+
 admin.site.register(Organisation, OrganisationAdmin)
 admin.site.register(OrganisationUserLink)
-admin.site.register(Section)
+admin.site.register(Section, SectionAdmin)
 admin.site.register(SectionUserLink)

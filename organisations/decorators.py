@@ -2,9 +2,11 @@ from django.shortcuts import redirect
 from django.shortcuts import resolve_url
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import login_required
 
 
 def user_is_linked_to_organisation(func):
+    @login_required
     def wrapper(request, *args, **kwargs):
         if not request.user.organisationuserlink_set.all():
             path = request.path
@@ -17,6 +19,7 @@ def user_is_linked_to_organisation(func):
 
 
 def user_is_linked_to_section(func):
+    @user_is_linked_to_organisation
     def wrapper(request, *args, **kwargs):
         if not request.user.sectionuserlink_set.all():
             path = request.path

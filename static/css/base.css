@@ -26,6 +26,10 @@ body {
     animation: .5s rotate ease 1;
 }
 
+#nav-open.visible {
+    animation: .5s slide ease 1;
+}
+
 #nav-close {
     color: white;
 }
@@ -87,18 +91,42 @@ nav li {
     background-color: #042a61;
 }
 
+.account-card .email {
+    font-size: .6rem;
+}
+
+.account-card ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.account-card .material-icons {
+    font-size: 3rem;
+    margin-right: 1rem;
+}
+
 .account-card li {
     display: flex;
     flex-direction: column;
 }
 
-.account-card .section {
-    margin-left: 4.5rem;
-}
-
-
 #current {
     background: #042a61;
+}
+
+.section-options {
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column-reverse;
+}
+
+.section-options a {
+    display: block;
+    margin: .2rem;
+    padding: 1rem;
+    background: #042a61;
+    border-radius: 3px;
+    color: white;
 }
 
 form label, form input, form select {
@@ -274,6 +302,8 @@ fieldset {
 .statistics {
     display: grid;
     grid-template-columns: repeat(3, 33%);
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
     text-align: center;
 }
 
@@ -329,6 +359,12 @@ fieldset {
         column-gap: 1rem;
         row-gap: 1rem;
     }
+
+    .section-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
 }
 
 @-webkit-keyframes rotate {
@@ -337,5 +373,14 @@ fieldset {
     }
     to {
         transform: rotate(180deg);
+    }
+}
+
+@-webkit-keyframes slide {
+    from {
+        right: -6rem;
+    }
+    to {
+        right: 0;
     }
 }

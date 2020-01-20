@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-19 10:10+0100\n"
+"POT-Creation-Date: 2020-01-20 15:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\novem\no_docker_settings.py:111 .\novem\settings.py:120
+#: .\novem\no_docker_settings.py:113 .\novem\settings.py:120
 msgid "English"
 msgstr "English"
 
-#: .\novem\no_docker_settings.py:112 .\novem\settings.py:121
+#: .\novem\no_docker_settings.py:114 .\novem\settings.py:121
 msgid "Dutch"
 msgstr "Dutch"
 
@@ -44,11 +44,11 @@ msgstr "Change password: %s"
 msgid "Organisations"
 msgstr "Organisations"
 
-#: .\organisations\decorators.py:12
+#: .\organisations\decorators.py:14
 msgid "You have to link to an organisation before you can access this page"
 msgstr "You have to link to an organisation before you can access this page"
 
-#: .\organisations\decorators.py:24
+#: .\organisations\decorators.py:27
 msgid "You have to choose a section before you can access this page"
 msgstr "You have to choose a section before you can access this page"
 
@@ -263,9 +263,18 @@ msgstr "Survey-section-link"
 msgid "Survey-section-links"
 msgstr "Survey-section-links"
 
-#: .\surveys\templates\surveys\home.html:6
+#: .\surveys\templates\surveys\home.html:5
 msgid "Start Survey!"
 msgstr "Start Survey!"
+
+#: .\surveys\templates\surveys\statistics.html:5
+#| msgid "Statistics"
+msgid "Statistics:"
+msgstr "Statistics"
+
+#: .\surveys\templates\surveys\statistics.html:10 .\surveys\views.py:83
+msgid "Personal"
+msgstr "Personal"
 
 #: .\surveys\templates\surveys\survey.html:31
 msgid "Previous"
@@ -274,6 +283,11 @@ msgstr "Previous"
 #: .\surveys\templates\surveys\survey.html:33
 msgid "Next"
 msgstr "Next"
+
+#: .\surveys\views.py:60
+#| msgid "You have to choose a section before you can access this page"
+msgid "You have to finish the survey before you can see statistics"
+msgstr "You have to finish the survey before you can see statistics"
 
 #: .\templates\_base_post_login.html:29
 msgid "Statistics"
