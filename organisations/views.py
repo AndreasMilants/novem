@@ -46,7 +46,7 @@ def link_to_section(request):
     if request.method == "POST":
         # If it was really important, I'd check whether the chosen section can be chosen here. This is a vulnerability
         # if we don't check. But this isn't really important here.
-        # We use a strange workaround for saving this because form.is_valid doesn't work
+        # We use a strange workaround for saving this because we set the choices for our model using a raw query
 
         model = SectionUserLink(user=request.user, section_id=request.POST.get('section'))
         model.save()

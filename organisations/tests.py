@@ -1,5 +1,6 @@
 from django.test import TestCase
-from .forms import OrganisationCreateForm, OrganisationAuthenticationForm
+from .forms import OrganisationCreateForm, OrganisationAuthenticationForm, ChooseSectionForm
+from .models import Section, SectionUserLink, Organisation
 
 
 class OrganisationTests(TestCase):
@@ -39,36 +40,6 @@ class OrganisationTests(TestCase):
         self.assertTrue(self.save_form_throws_value_error(form))
 
 
-class LinkToOrganisationTests(TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.org_name = 'test_org'
-        self.password = 'test123'
-
-    def setUp(self):
-        form_data = {'name': self.org_name, 'password1': self.password, 'password2': self.password}
-        form = OrganisationCreateForm(data=form_data)
-        org = form.save()
-        self.org = org.id
-
-    @staticmethod
-    def check_pass(org, password):
-        auth_data = {'organisation': org, 'password': password}
-        auth = OrganisationAuthenticationForm(data=auth_data)
-        return auth.is_valid()
-
-    def test_correct_pass(self):
-        self.assertTrue(self.check_pass(self.org, self.password))
-
-    def test_wrong_pass(self):
-        self.assertFalse(self.check_pass(self.org, ''))
-        self.assertFalse(self.check_pass(self.org, 'wrongpass'))
-        self.assertFalse(self.check_pass(self.org, 'Test123'))  # Check case sensitivity
-
-    def test_cannot_link_to_nonexistent_organisation(self):
-        self.assertFalse(self.check_pass('nonexistent', self.password))
-
-
 class OrganisationAuthenticationTests(TestCase):
     def setUp(self):
         self.passw = 'pass'
@@ -91,5 +62,26 @@ class OrganisationAuthenticationTests(TestCase):
         self.org.is_active = True
         self.org.save()
 
+    def test_cannot_link_to_nonexistent_organisation(self):
+        self.assertFalse(
+            OrganisationAuthenticationForm(data={'organisation': 'nonexistent', 'password': 'pass'}).is_valid())
 
-# TODO choosesectionform (important: gives correct options)
+
+class ChooseSectionFormTests(TestCase):
+    def setUp(self):
+        self.org = Organisation(name='test', password='test123')
+        self.org.save()
+        section = Section(name='level0', organisation=self.org)
+        section.save()
+        for i in range(1, 4):
+            section = Section(name='level{}'.format(i), parent_section=section)
+            section.save()
+
+    def test_gives_only_bottom_most_sections_of_tree(self):
+        form = ChooseSectionForm(organisation=self.org)
+        self.assertEquals(1, len(form.fields['section'].choices))
+        self.assertEquals('level3', form.fields['section'].choices[0][1])
+
+    # Cannot check creation because this uses a raw query
+
+# TODO should check the linktosection view because this does not use the default form behaviour

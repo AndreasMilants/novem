@@ -124,8 +124,6 @@ LANGUAGES = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# TODO change in production
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

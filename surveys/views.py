@@ -10,7 +10,7 @@ from organisations.decorators import user_is_linked_to_organisation, user_is_lin
 @user_is_linked_to_organisation
 @user_is_linked_to_section
 def homepage(request):
-    context = {}
+    context = {'current': 'survey'}
     return render(request, 'surveys/home.html', context)
 
 
@@ -51,7 +51,7 @@ def survey_view(request, page):
 
     return render(request, 'surveys/survey.html',
                   {'page': int(page), 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
-                   'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey})
+                   'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey, 'current': 'survey'})
 
 
 @login_required
@@ -63,7 +63,8 @@ def get_personal_survey_stats(request, survey):
                                                          question__level=level[0]).aggregate(Avg('answer'))[
             'answer__avg']} for level in LEVEL_CHOICES]
     return render(request, 'surveys/see-personal-statistics-survey.html',
-                  {'stats': personal_stats, 'min': -50, 'max': 50, 'survey': Survey.objects.get(slug=survey)})
+                  {'stats': personal_stats, 'min': -50, 'max': 50, 'survey': Survey.objects.get(slug=survey),
+                   'current': 'stat'})
 
 
 @login_required
@@ -73,7 +74,7 @@ def personal_statistics(request):
     surveys = Survey.objects.filter(question__answer__user=request.user).distinct()
     if len(surveys) == 1:
         return redirect('see-personal-statistics', surveys[0].slug)
-    return render(request, 'surveys/personal-statistics.html', {'surveys': surveys})
+    return render(request, 'surveys/personal-statistics.html', {'surveys': surveys, 'current': 'stat'})
 
 
 def get_surveys(request):

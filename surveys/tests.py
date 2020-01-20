@@ -20,11 +20,8 @@ class SurveyModelTests(TestCase):
 
 
 class QuestionModelTests(TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.survey = Survey(name='tt')
-
     def setUp(self):
+        self.survey = Survey(name='tt')
         self.survey.save()
 
     def test_create(self):
@@ -32,41 +29,22 @@ class QuestionModelTests(TestCase):
         question.save()
 
 
-class AnswerModelTests(TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.survey = Survey(name='test_survey_6')
-        self.questions = [Question(level=i, survey=self.survey, question="Does this work?") for i in range(10)]
-
+class AnswerFormTests(TestCase):
     def setUp(self):
+        self.survey = Survey(name='test_survey')
+        self.questions = [Question(level=i, survey=self.survey, question="Does this work?") for i in range(10)]
         self.survey.save()
         for q in self.questions:
             q.save()
-        self.test_user = get_user_model().objects.create_user(
-            email='andreas.milants@gmail.com',
-            password='thisisapassword'
-        )
-        self.test_user.save()
 
-    def test_create_valid(self):
-        for ans, q in zip([0, -50, 50], self.questions):
-            answer = Answer(question=q, answer=ans, user=self.test_user)
-            answer.save()
+    def test_valid_answer(self):
+        answer_set = [0, -50, 50]
+        for answer in answer_set:
+            form = AnswerForm(data={'question': self.questions[0], 'answer': answer})
+            self.assertTrue(form.is_valid())
 
-    def test_create_invalid_answer(self):
-        for ans, q in zip([-51, 51], self.questions):
-            answer = Answer(question=q, answer=ans, user=self.test_user)
-            self.assertRaises(IntegrityError, answer.save())
-
-        def create_answer():
-            Answer(question=self.questions[0], answer=ans, user=self.test_user)
-
-        for ans, q in zip(['a'], self.questions):
-            self.assertRaises(ValueError, create_answer())
-
-        def create_answer_2():
-            Answer(question=self.questions[0], answer=None, user=self.test_user)
-
-        self.assertRaises(IntegrityError, create_answer_2())
-
-# TODO form testing, linking sections
+    def test_invalid(self):
+        answer_set = ['a', -51, 51]
+        for answer in answer_set:
+            form = AnswerForm(data={'question': self.questions[0], 'answer': answer})
+            self.assertFalse(form.is_valid())

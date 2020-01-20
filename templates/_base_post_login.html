@@ -20,11 +20,11 @@
             </section>
         {% endif %}
         <ul class="navigation">
-            <li>
+            <li {% if current == 'survey' %}id="current" {% endif %}>
                 <a href="{% url 'home' %}"><span
                         class="material-icons">poll</span><span>{% trans 'Surveys' %}</span></a>
             </li>
-            <li>
+            <li {% if current == 'stat' %}id="current" {% endif %}>
                 <a href="{% url 'personal-statistics' %}">
                     <span class="material-icons">show_chart</span><span>{% trans 'Statistics' %}</span>
                 </a>
