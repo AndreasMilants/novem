@@ -52,7 +52,7 @@ def survey_view(request, page):
         return redirect('personal-statistics')
 
     return render(request, 'surveys/survey.html',
-                  {'page': int(page), 'pages': len(LEVEL_CHOICES), 'form_set': form_set,
+                  {'page': int(page), 'pages': range(1, len(LEVEL_CHOICES) + 1), 'form_set': form_set,
                    'level': LEVEL_CHOICES[int(page) - 1][1], 'survey': survey, 'current': 'survey'})
 
 

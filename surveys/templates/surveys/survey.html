@@ -2,8 +2,16 @@
 {% load i18n static %}
 
 {% block content %}
-    <h1>{{ survey }}</h1>
-    <h2>{{ level }}</h2>
+    <h1>{% trans 'Survey' %} {{ survey }}</h1>
+    <section class="survey-nav">
+        {% for p in pages %}
+            <a class="survey-page{% if p == page %} current{% elif p < page %} less{% endif %}"
+               {% if p < page %}href="{% url 'survey' page=p %}"{% endif %}>
+                <span>{{ p }}</span>
+            </a>
+        {% endfor %}
+    </section>
+    <h2 class="survey-level">{{ level }}</h2>
     <form method="post" class="survey">
         {% csrf_token %}
         {{ form_set.management_form }}

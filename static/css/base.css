@@ -7,6 +7,10 @@ body {
     min-height: 100vh;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
 #nav-open, #nav-close {
     display: none;
     position: fixed;
@@ -89,6 +93,10 @@ nav li {
     display: flex;
     flex-direction: column;
     background-color: #042a61;
+}
+
+.account-card .material-icons {
+    cursor: default;
 }
 
 .account-card .email {
@@ -184,6 +192,7 @@ article {
 }
 
 .slider input {
+    margin: 0;
     -webkit-appearance: none;
     width: 100%;
     height: 25px;
@@ -216,8 +225,8 @@ article {
 
 .background-input-range {
     position: absolute;
-    height: 20px;
-    top: 5px;
+    height: 25px;
+    top: 1px;
     z-index: -1;
 }
 
@@ -307,6 +316,60 @@ fieldset {
     text-align: center;
 }
 
+.survey-nav {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 400px;
+}
+
+.survey-nav .survey-page {
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    background: #cccccc;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: black;
+    text-decoration: none;
+    cursor: default;
+    border: 1px solid transparent;
+}
+
+.survey-nav .survey-page.current {
+    position: relative;
+    top: -5px;
+    background: #042a61;
+    color: white;
+    border: 6px solid #042a61;
+}
+
+.survey-nav .survey-page.less {
+    background: #5b80b2;
+    color: white;
+    transition: .6s;
+    cursor: pointer;
+}
+
+.survey-nav .survey-page.less:hover {
+    background: #ffffff;
+    border: 1px solid#5b80b2;
+    color: #5b80b2;
+}
+
+.survey-nav .survey-page span {
+    position: relative;
+    top: .5rem;
+}
+
+.survey {
+    margin-top: 1rem;
+}
+
+.survey-level {
+}
+
 @media screen and (min-width: 768px) {
     body {
         display: flex;
@@ -364,6 +427,41 @@ fieldset {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+    }
+
+    .survey-nav {
+        display: flex;
+        justify-content: space-evenly;
+        max-width: 620px;
+    }
+
+    .survey-nav .survey-page {
+        height: 2.5rem;
+        width: 2.5rem;
+        line-height: 1.3rem;
+        font-size: 1.3rem;
+    }
+
+    .survey-nav .survey-page.current {
+        top: -7px;
+        border-width: 8px;
+    }
+
+    .survey-nav .survey-page span {
+        top: .6rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .survey-nav .survey-page {
+        height: 3.5rem;
+        width: 3.5rem;
+        line-height: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .survey-nav .survey-page span {
+        top: 1rem;
     }
 }
 
