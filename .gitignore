@@ -2,4 +2,3 @@
 .idea
 db.sqlite3
 pw.txt
-staticfiles
