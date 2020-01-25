@@ -93,12 +93,24 @@ class Section(models.Model):
 
 class SectionUserLink(models.Model):
     """We use an extra table, so that in the future users can be linked to multiple organisations"""
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('organisation'))
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
 
     class Meta:
         verbose_name = _('Section-user-link')
         verbose_name_plural = _('Section-user-links')
+
+    def __str__(self):
+        return '{} - {}'.format(str(self.user), str(self.section))
+
+
+class SectionAdministrator(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
+
+    class Meta:
+        verbose_name = _('Section Administrator')
+        verbose_name_plural = _('Section Administrators')
 
     def __str__(self):
         return '{} - {}'.format(str(self.user), str(self.section))

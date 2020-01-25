@@ -6,51 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Novem{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="{% static 'imgs/favicon.ico' %}"/>
-
-    <script>
-        window.addEventListener("load", initPage, false);
-
-        function initPage() {
-            document.getElementById("nav-open").addEventListener("click", openNav, false);
-            document.getElementById("nav-close").addEventListener("click", closeNav, false);
-        }
-
-        function openNav() {
-            let nav = document.getElementById("nav");
-            nav.classList.add('visible');
-            document.getElementById("nav-open").classList.remove("visible");
-        }
-
-        function closeNav() {
-            let nav = document.getElementById("nav");
-            nav.classList.remove('visible');
-            document.getElementById("nav-open").classList.add("visible");
-        }
-
-        function toggleNav() {
-            let nav = document.getElementById("nav");
-            nav.classList.toggle('visible');
-            document.getElementById("nav-open").classList.toggle("visible");
-        }
-    </script>
+    <script type="text/javascript" src="{% static 'js/init.js' %}"></script>
 </head>
 <body>
 <article>
     {% if messages %}
-        <script>
-            window.addEventListener("load", deleteMessages, false);
-
-            function deleteMessages() {
-                let messages = document.getElementsByClassName("messages");
-                for (let i = 0; i < messages.length; i++) {
-                    messages[i].classList.add("disappear");
-                }
-            }
-        </script>
         <ul class="messages">
             {% for message in messages %}
                 <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>

@@ -27,13 +27,20 @@
                         class="material-icons">poll</span><span>{% trans 'Surveys' %}</span></a>
             </li>
             <li {% if current == 'stat' %}id="current" {% endif %}>
-                <a href="{% url 'personal-statistics' %}">
+                <a href="{% url 'personal-statistics' section='personal' %}">
                     <span class="material-icons">show_chart</span><span>{% trans 'Statistics' %}</span>
                 </a>
             </li>
+            {% if user.sectionadministrator_set.all %}
+                <li {% if current == 'stat-admin' %}id="current" {% endif %}>
+                    <a href="{% url 'admin-statistics' %}">
+                        <span class="material-icons">bar_chart</span><span>{% trans 'Administrator Statistics' %}</span>
+                    </a>
+                </li>
+            {% endif %}
             {% if user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}"><span
-                        class="material-icons">supervisor_account</span><span>{% trans 'Admin page' %}</span></a></li>
+                        class="material-icons">supervisor_account</span><span>{% trans 'Superuser page' %}</span></a></li>
             {% endif %}
             <li><a href="{% url 'logout' %}"><span
                     class="material-icons">exit_to_app</span><span>{% trans 'Log Out' %}</span></a></li>

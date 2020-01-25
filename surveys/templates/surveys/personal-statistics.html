@@ -1,0 +1,7 @@
+{% extends '_base_post_login.html' %}
+{% load i18n %}
+{% block content %}
+    <h1>{% trans 'Statistics:' %} {{ title }}</h1>
+    {% include 'surveys/_section-options.html' with url='personal-statistics' %}
+    {% include 'surveys/_statistics.html' %}
+{% endblock content %}

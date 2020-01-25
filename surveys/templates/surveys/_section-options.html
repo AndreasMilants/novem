@@ -1,0 +1,5 @@
+<section class="section-options">
+    {% for section in sections %}
+        <a href="{% url url section=section.id %}">{{ section.name }}</a>
+    {% endfor %}
+</section>

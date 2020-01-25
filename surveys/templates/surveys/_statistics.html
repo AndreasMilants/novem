@@ -1,0 +1,10 @@
+{%  load static %}
+<section class="statistics">
+    {% for stat in stats %}
+        <div>
+            <h4>{{ stat.level }}</h4>
+            <p>{{ stat.avg }}</p>
+        </div>
+    {% endfor %}
+</section>
+<script src="{% static 'js/surveys/statistics.js' %}"></script>

@@ -37,13 +37,16 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
-    email = models.EmailField(unique=True)  # changes email to unique and blank to false
+    email = models.EmailField(unique=True, verbose_name='email')  # changes email to unique and blank to false
     REQUIRED_FIELDS = []
 
     objects = UserManager()
 
     def save(self, *args, **kwargs):
-        self.username = self.email
+        if not self.email:
+            self.email = self.username
+        else:
+            self.username = self.email
         super().save(*args, **kwargs)
 
     def __str__(self):

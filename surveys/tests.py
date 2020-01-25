@@ -48,3 +48,7 @@ class AnswerFormTests(TestCase):
         for answer in answer_set:
             form = AnswerForm(data={'question': self.questions[0], 'answer': answer})
             self.assertFalse(form.is_valid())
+
+
+# TODO add tests for statistics pages
+# TODO add tests for section administrator pages

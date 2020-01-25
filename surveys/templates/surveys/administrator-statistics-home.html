@@ -1,0 +1,23 @@
+{% extends '_base_post_login.html' %}
+{% load i18n %}
+{% block content %}
+    <h1>{% trans 'See detailed statistics' %}</h1>
+    <section class="section-options-admin">
+        <h2>{% trans 'Section' %}</h2>
+        {% for section in sections %}
+            <div>
+                <span>{{ section.name }}</span>
+                <div>
+                <a href="{% url 'admin-statistics-section' section=section.id %}">
+                    <span class="material-icons">show_chart</span>
+                    <span>{% trans 'Statistics' %}</span>
+                </a>
+                <a href="{% url 'admin-statistics-users' section=section.id %}">
+                    <span class="material-icons">group</span>
+                    <span>{% trans 'Users' %}</span>
+                </a>
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

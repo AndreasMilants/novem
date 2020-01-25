@@ -1,0 +1,9 @@
+{% extends '_base_post_login.html' %}
+{% load i18n %}
+{% block content %}
+    <h1>{% trans 'Statistics' %} {{ user_statistics.email }}</h1>
+    <a class="button" href="{% url 'admin-statistics-users' section=current_section.id %}">
+        {% trans 'See users of' %} {{ current_section.name }}
+    </a>
+    {% include 'surveys/_statistics.html' %}
+{% endblock content %}

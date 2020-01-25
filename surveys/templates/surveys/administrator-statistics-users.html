@@ -1,0 +1,27 @@
+{% extends '_base_post_login.html' %}
+{% load i18n %}
+{% block content %}
+    <h1>{% trans 'Users' %} {{ current_section.name }}</h1>
+    <a class="button" href="{% url 'admin-statistics-section' section=current_section.id %}">
+        {% trans 'See statistics of' %} {{ current_section.name }}
+    </a>
+    {% include 'surveys/_section-options.html' with url='admin-statistics-users' %}
+    <table class="users-admin">
+        <tr>
+            <th>{% trans 'Email' %}</th>
+            <th>{% trans 'Section' %}</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>
+                    <a href="{% url 'admin-statistics-user' user=user.email %}"><span>{{ user.email }}</span></a>
+                </td>
+                <td>
+                    <a href="{% url 'admin-statistics-users' section=user.section_id %}">
+                        <span>{{ user.section_name }}</span>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

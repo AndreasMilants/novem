@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-20 15:14+0100\n"
+"POT-Creation-Date: 2020-01-25 20:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,16 +26,16 @@ msgstr "English"
 msgid "Dutch"
 msgstr "Dutch"
 
-#: .\organisations\admin.py:54
+#: .\organisations\admin.py:55
 #, python-format
 msgid "%(name)s object with primary key %(key)r does not exist."
 msgstr "%(name)s object with primary key %(key)r does not exist."
 
-#: .\organisations\admin.py:64
+#: .\organisations\admin.py:65
 msgid "Password changed successfully."
 msgstr "Password changed successfully."
 
-#: .\organisations\admin.py:84
+#: .\organisations\admin.py:85
 #, python-format
 msgid "Change password: %s"
 msgstr "Change password: %s"
@@ -116,7 +116,7 @@ msgid "Organisation"
 msgstr "Organisation"
 
 #: .\organisations\models.py:65 .\organisations\models.py:67
-#: .\organisations\models.py:80 .\organisations\models.py:96
+#: .\organisations\models.py:80
 msgid "organisation"
 msgstr "organisation"
 
@@ -133,6 +133,8 @@ msgid "parent_section"
 msgstr "parent_section"
 
 #: .\organisations\models.py:86
+#: .\surveys\templates\surveys\administrator-statistics-home.html:6
+#: .\surveys\templates\surveys\administrator-statistics-users.html:12
 msgid "Section"
 msgstr "Section"
 
@@ -140,7 +142,12 @@ msgstr "Section"
 msgid "Sections"
 msgstr "Sections"
 
-#: .\organisations\models.py:97 .\surveys\models.py:74
+#: .\organisations\models.py:96 .\organisations\models.py:108
+msgid "user"
+msgstr "user"
+
+#: .\organisations\models.py:97 .\organisations\models.py:109
+#: .\surveys\models.py:74
 msgid "section"
 msgstr "section"
 
@@ -151,6 +158,14 @@ msgstr "Section-user-link"
 #: .\organisations\models.py:101
 msgid "Section-user-links"
 msgstr "Section-user-links"
+
+#: .\organisations\models.py:112
+msgid "Section Administrator"
+msgstr "Section Administrator"
+
+#: .\organisations\models.py:113
+msgid "Section Administrators"
+msgstr "Section Administrators"
 
 #: .\organisations\templates\organisations\authenticate_organisation.html:6
 msgid "Log in with organisation"
@@ -219,11 +234,11 @@ msgstr "Authenticity"
 msgid "Research"
 msgstr "Research"
 
-#: .\surveys\models.py:27
+#: .\surveys\models.py:27 .\surveys\templates\surveys\survey.html:5
 msgid "Survey"
 msgstr "Survey"
 
-#: .\surveys\models.py:28 .\templates\_base_post_login.html:25
+#: .\surveys\models.py:28 .\templates\_base_post_login.html:27
 msgid "Surveys"
 msgstr "Surveys"
 
@@ -263,49 +278,79 @@ msgstr "Survey-section-link"
 msgid "Survey-section-links"
 msgstr "Survey-section-links"
 
-#: .\surveys\templates\surveys\home.html:5
-msgid "Start Survey!"
-msgstr "Start Survey!"
-
-#: .\surveys\templates\surveys\statistics.html:5
+#: .\surveys\templates\surveys\administrator-statistics-home.html:4
 #| msgid "Statistics"
-msgid "Statistics:"
-msgstr "Statistics"
+msgid "See detailed statistics"
+msgstr "See detailed statistics"
 
-#: .\surveys\templates\surveys\statistics.html:10 .\surveys\views.py:83
-msgid "Personal"
-msgstr "Personal"
-
-#: .\surveys\templates\surveys\survey.html:31
-msgid "Previous"
-msgstr "Previous"
-
-#: .\surveys\templates\surveys\survey.html:33
-msgid "Next"
-msgstr "Next"
-
-#: .\surveys\views.py:60
-#| msgid "You have to choose a section before you can access this page"
-msgid "You have to finish the survey before you can see statistics"
-msgstr "You have to finish the survey before you can see statistics"
-
-#: .\templates\_base_post_login.html:29
+#: .\surveys\templates\surveys\administrator-statistics-home.html:13
+#: .\surveys\templates\surveys\administrator-statistics-section.html:4
+#: .\surveys\templates\surveys\administrator-statistics-user.html:4
+#: .\templates\_base_post_login.html:31
 msgid "Statistics"
 msgstr "Statistics"
 
-#: .\templates\_base_post_login.html:34
-msgid "Admin page"
-msgstr "Admin page"
+#: .\surveys\templates\surveys\administrator-statistics-home.html:17
+#: .\surveys\templates\surveys\administrator-statistics-users.html:4
+#| msgid "users"
+msgid "Users"
+msgstr "Users"
+
+#: .\surveys\templates\surveys\administrator-statistics-section.html:6
+#: .\surveys\templates\surveys\administrator-statistics-user.html:6
+msgid "See users of"
+msgstr "See users of"
+
+#: .\surveys\templates\surveys\administrator-statistics-users.html:6
+#| msgid "Statistics"
+msgid "See statistics of"
+msgstr "See statistics of"
+
+#: .\surveys\templates\surveys\administrator-statistics-users.html:11
+msgid "Email"
+msgstr "Email"
+
+#: .\surveys\templates\surveys\home.html:4
+msgid "Start Survey!"
+msgstr "Start Survey!"
+
+#: .\surveys\templates\surveys\personal-statistics.html:4
+msgid "Statistics:"
+msgstr "Statistics"
+
+#: .\surveys\templates\surveys\survey.html:39
+msgid "Previous"
+msgstr "Previous"
+
+#: .\surveys\templates\surveys\survey.html:41
+msgid "Next"
+msgstr "Next"
+
+#: .\surveys\views.py:35
+msgid "The administrator did not set up a survey for your section."
+msgstr ""
+
+#: .\surveys\views.py:76
+msgid "You have to finish the survey before you can see statistics"
+msgstr "You have to finish the survey before you can see statistics"
+
+#: .\surveys\views.py:94 .\surveys\views.py:101
+msgid "Personal"
+msgstr "Personal"
 
 #: .\templates\_base_post_login.html:37
+msgid "Administrator Statistics"
+msgstr "Administrator Statistics"
+
+#: .\templates\_base_post_login.html:43
+msgid "Superuser page"
+msgstr "Superuser page"
+
+#: .\templates\_base_post_login.html:46
 msgid "Log Out"
 msgstr "Log Out"
 
-#: .\users\admin.py:28
-msgid "Permissions"
-msgstr "Permissions"
-
-#: .\users\admin.py:31
+#: .\users\admin.py:26
 msgid "Important dates"
 msgstr "Important dates"
 
@@ -335,3 +380,9 @@ msgstr ""
 "\"%(login_url)s\">login page</a> within\n"
 "            <span id=\"timer\">5</span> seconds.\n"
 "        "
+
+#~ msgid "Admin page"
+#~ msgstr "Admin page"
+
+#~ msgid "Permissions"
+#~ msgstr "Permissions"

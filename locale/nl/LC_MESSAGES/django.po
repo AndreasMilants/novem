@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-20 15:14+0100\n"
+"POT-Creation-Date: 2020-01-25 20:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,16 +26,16 @@ msgstr "Engels"
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: .\organisations\admin.py:54
+#: .\organisations\admin.py:55
 #, python-format
 msgid "%(name)s object with primary key %(key)r does not exist."
 msgstr "%(name)s object met primary key %(key)r bestaat niet"
 
-#: .\organisations\admin.py:64
+#: .\organisations\admin.py:65
 msgid "Password changed successfully."
 msgstr "Wachtwoord succesvol aangepast"
 
-#: .\organisations\admin.py:84
+#: .\organisations\admin.py:85
 #, python-format
 msgid "Change password: %s"
 msgstr "Verander wachtwoord: %s"
@@ -116,7 +116,7 @@ msgid "Organisation"
 msgstr "Organisatie"
 
 #: .\organisations\models.py:65 .\organisations\models.py:67
-#: .\organisations\models.py:80 .\organisations\models.py:96
+#: .\organisations\models.py:80
 msgid "organisation"
 msgstr "organisaties"
 
@@ -133,6 +133,8 @@ msgid "parent_section"
 msgstr "ouder_afdeling"
 
 #: .\organisations\models.py:86
+#: .\surveys\templates\surveys\administrator-statistics-home.html:6
+#: .\surveys\templates\surveys\administrator-statistics-users.html:12
 msgid "Section"
 msgstr "Afdeling"
 
@@ -140,7 +142,12 @@ msgstr "Afdeling"
 msgid "Sections"
 msgstr "Afdelingen"
 
-#: .\organisations\models.py:97 .\surveys\models.py:74
+#: .\organisations\models.py:96 .\organisations\models.py:108
+msgid "user"
+msgstr "gebruiker"
+
+#: .\organisations\models.py:97 .\organisations\models.py:109
+#: .\surveys\models.py:74
 msgid "section"
 msgstr "afdeling"
 
@@ -151,6 +158,14 @@ msgstr "Afdeling-gebruiker-link"
 #: .\organisations\models.py:101
 msgid "Section-user-links"
 msgstr "Afdeling-gebruiker-links"
+
+#: .\organisations\models.py:112
+msgid "Section Administrator"
+msgstr "Afdeling Administrator"
+
+#: .\organisations\models.py:113
+msgid "Section Administrators"
+msgstr "Afdeling Administrators"
 
 #: .\organisations\templates\organisations\authenticate_organisation.html:6
 msgid "Log in with organisation"
@@ -219,11 +234,11 @@ msgstr "Authenticiteit"
 msgid "Research"
 msgstr "Onderzoek"
 
-#: .\surveys\models.py:27
+#: .\surveys\models.py:27 .\surveys\templates\surveys\survey.html:5
 msgid "Survey"
 msgstr "Vragenlijst"
 
-#: .\surveys\models.py:28 .\templates\_base_post_login.html:25
+#: .\surveys\models.py:28 .\templates\_base_post_login.html:27
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
@@ -263,50 +278,79 @@ msgstr "Vragenlijst-afdeling-link"
 msgid "Survey-section-links"
 msgstr "Vragenlijst-afdeling-links"
 
-#: .\surveys\templates\surveys\home.html:5
-msgid "Start Survey!"
-msgstr "Start Vragenlijst!"
-
-#: .\surveys\templates\surveys\statistics.html:5
+#: .\surveys\templates\surveys\administrator-statistics-home.html:4
 #| msgid "Statistics"
-msgid "Statistics:"
-msgstr "Statistieken"
+msgid "See detailed statistics"
+msgstr "Bekijk gedetailleerde statistieken"
 
-#: .\surveys\templates\surveys\statistics.html:10 .\surveys\views.py:83
-msgid "Personal"
-msgstr "Persoonlijk"
-
-#: .\surveys\templates\surveys\survey.html:31
-msgid "Previous"
-msgstr "Vorige"
-
-#: .\surveys\templates\surveys\survey.html:33
-msgid "Next"
-msgstr "Volgende"
-
-#: .\surveys\views.py:60
-#, fuzzy
-#| msgid "You have to choose a section before you can access this page"
-msgid "You have to finish the survey before you can see statistics"
-msgstr "Je moet de vragenlijst afronden voor je statistieken kan bekijken"
-
-#: .\templates\_base_post_login.html:29
+#: .\surveys\templates\surveys\administrator-statistics-home.html:13
+#: .\surveys\templates\surveys\administrator-statistics-section.html:4
+#: .\surveys\templates\surveys\administrator-statistics-user.html:4
+#: .\templates\_base_post_login.html:31
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: .\templates\_base_post_login.html:34
-msgid "Admin page"
-msgstr "Administrator"
+#: .\surveys\templates\surveys\administrator-statistics-home.html:17
+#: .\surveys\templates\surveys\administrator-statistics-users.html:4
+#| msgid "users"
+msgid "Users"
+msgstr "Gebruikers"
+
+#: .\surveys\templates\surveys\administrator-statistics-section.html:6
+#: .\surveys\templates\surveys\administrator-statistics-user.html:6
+msgid "See users of"
+msgstr "Bekijk gebruikers van"
+
+#: .\surveys\templates\surveys\administrator-statistics-users.html:6
+#| msgid "Statistics"
+msgid "See statistics of"
+msgstr "Bekijk statistieken van"
+
+#: .\surveys\templates\surveys\administrator-statistics-users.html:11
+msgid "Email"
+msgstr "E-mail"
+
+#: .\surveys\templates\surveys\home.html:4
+msgid "Start Survey!"
+msgstr "Start Vragenlijst!"
+
+#: .\surveys\templates\surveys\personal-statistics.html:4
+msgid "Statistics:"
+msgstr "Statistieken"
+
+#: .\surveys\templates\surveys\survey.html:39
+msgid "Previous"
+msgstr "Vorige"
+
+#: .\surveys\templates\surveys\survey.html:41
+msgid "Next"
+msgstr "Volgende"
+
+#: .\surveys\views.py:35
+msgid "The administrator did not set up a survey for your section."
+msgstr "De administrator heeft geen vragenlijst ingesteld voor jouw afdeling."
+
+#: .\surveys\views.py:76
+msgid "You have to finish the survey before you can see statistics"
+msgstr "Je moet de vragenlijst afronden voor je statistieken kan bekijken"
+
+#: .\surveys\views.py:94 .\surveys\views.py:101
+msgid "Personal"
+msgstr "Persoonlijk"
 
 #: .\templates\_base_post_login.html:37
+msgid "Administrator Statistics"
+msgstr "Administrator Statistieken"
+
+#: .\templates\_base_post_login.html:43
+msgid "Superuser page"
+msgstr "Superuser pagina"
+
+#: .\templates\_base_post_login.html:46
 msgid "Log Out"
 msgstr "Afmelden"
 
-#: .\users\admin.py:28
-msgid "Permissions"
-msgstr "Permissies"
-
-#: .\users\admin.py:31
+#: .\users\admin.py:26
 msgid "Important dates"
 msgstr "Belangrijke data"
 
@@ -337,6 +381,8 @@ msgstr ""
 "            <span id=\"timer\">5</span> seconden.\n"
 "        "
 
-#~| msgid "users"
-#~ msgid "user"
-#~ msgstr "gebruiker"
+#~ msgid "Admin page"
+#~ msgstr "Administrator"
+
+#~ msgid "Permissions"
+#~ msgstr "Permissies"
