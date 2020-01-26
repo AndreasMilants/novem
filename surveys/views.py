@@ -249,7 +249,7 @@ def admin_statistics_section_view(request, section):
                        'FROM section_tree2'
                        ') '
                        'GROUP BY q.level '
-                       'ORDER BY q.level', [request.user.id, int(section)])
+                       'ORDER BY q.level', [request.user.id, section])
         rows = cursor.fetchall()
         stats = [
             {'level': LEVEL_CHOICES[int(row[0]) - 1][1], 'avg': row[1]} for row in rows]
