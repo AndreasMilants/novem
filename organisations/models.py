@@ -83,7 +83,7 @@ class Section(models.Model):
     parent_section = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT,
                                        verbose_name=_('parent_section'),
                                        related_name='child_section')
-    parent_section_uuid = models.ForeignKey('self', null=True, blank=True, related_name='a', to_field='uuid', on_delete=models.PROTECT)
+    """parent_section_uuid = models.ForeignKey('self', null=True, blank=True, related_name='a', to_field='uuid', on_delete=models.PROTECT)"""
 
     class Meta:
         verbose_name = _('Section')
@@ -98,7 +98,7 @@ class SectionUserLink(models.Model):
     """We use an extra table, so that in the future users can be linked to multiple organisations"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
-    section_uuid = models.ForeignKey(Section, null=True, blank=True, related_name='b', to_field='uuid', on_delete=models.PROTECT)
+    """section_uuid = models.ForeignKey(Section, null=True, blank=True, related_name='b', to_field='uuid', on_delete=models.PROTECT)"""
 
 
     class Meta:
@@ -112,7 +112,7 @@ class SectionUserLink(models.Model):
 class SectionAdministrator(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
-    section_uuid = models.ForeignKey(Section, null=True, blank=True, related_name='c', to_field='uuid', on_delete=models.PROTECT)
+    """section_uuid = models.ForeignKey(Section, null=True, blank=True, related_name='c', to_field='uuid', on_delete=models.PROTECT)"""
 
     class Meta:
         verbose_name = _('Section Administrator')
