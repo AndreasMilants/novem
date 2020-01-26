@@ -1,7 +1,7 @@
 from django.db.models import Avg
 from django.shortcuts import render, redirect
-from .models import Question, LEVEL_CHOICES, Survey, Answer
-from organisations.models import Section, SectionAdministrator
+from .models import Question, LEVEL_CHOICES, Survey, Answer, SurveySectionLink
+from organisations.models import Section, SectionAdministrator, SectionUserLink
 from .forms import AnswerFormSet, get_answer_form_set
 from organisations.decorators import user_is_linked_to_section, user_is_linked_to_organisation
 from django.contrib import messages
@@ -9,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
+import uuid
+
 
 User = get_user_model()
 
@@ -24,6 +26,26 @@ in the ORM.
 
 @user_is_linked_to_section
 def homepage_view(request):
+
+    for item in Section.objects.all():
+        item.uuid = uuid.uuid4()
+        item.save()
+
+    """step 2
+    
+    for item in SectionUserLink.objects.all():
+        item.section_uuid = item.section
+        item.save()
+    for item in Section.objects.all():
+        item.parent_section_uuid = item.parent_section
+        item.save()
+    for item in SectionAdministrator.objects.all():
+        item.section_uuid = item.section
+        item.save()
+    for item in SurveySectionLink.objects.all():
+        item.section_uuid = item.section
+        item.save()
+    """
     context = {'current': 'survey'}
     return render(request, 'surveys/home.html', context)
 

@@ -72,6 +72,8 @@ class SurveySectionLink(models.Model):
     """Maybe it is possible that one section has to take multiple surveys. That's why we use this table"""
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE, verbose_name=_('survey'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
+    """section_uuid = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='base_uuid', to_field='uuid',
+                                     blank=True, null=True)"""
 
     class Meta:
         verbose_name = _('Survey-section-link')
