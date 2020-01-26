@@ -76,15 +76,13 @@ class OrganisationUserLink(models.Model):
 
 
 class Section(models.Model):
-    """uuid = models.UUIDField(default=uuid.uuid4(), blank=True, null=True)"""
+    uuid = models.UUIDField(default=uuid.uuid4, blank=True, null=True)
     name = models.CharField(max_length=63)
     organisation = models.ForeignKey(Organisation, null=True, blank=True, on_delete=models.CASCADE,
                                      verbose_name=_('organisation'))
     parent_section = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE,
                                        verbose_name=_('parent_section'),
                                        related_name='child_section')
-    """parent_section_uuid = models.ForeignKey('self', on_delete=models.CASCADE, related_name='cbase_uuid',
-                                            to_field='uuid', blank=True, null=True)"""
 
     class Meta:
         verbose_name = _('Section')
@@ -99,8 +97,6 @@ class SectionUserLink(models.Model):
     """We use an extra table, so that in the future users can be linked to multiple organisations"""
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
-    """section_uuid = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='bbase_uuid', to_field='uuid',
-                                     blank=True, null=True)"""
 
     class Meta:
         verbose_name = _('Section-user-link')
@@ -113,8 +109,6 @@ class SectionUserLink(models.Model):
 class SectionAdministrator(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
-    """section_uuid = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='nbase_uuid', to_field='uuid',
-                                     blank=True, null=True)"""
 
     class Meta:
         verbose_name = _('Section Administrator')

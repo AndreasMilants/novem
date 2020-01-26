@@ -220,7 +220,7 @@ class AdminPasswordChangeForm(forms.Form):
 class SectionCreationForm(forms.ModelForm):
     class Meta:
         model = Section
-        exclude = []
+        exclude = ['id']
 
 
 class SectionUpdateForm(forms.ModelForm):
