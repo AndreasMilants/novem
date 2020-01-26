@@ -138,15 +138,17 @@ class OrganisationAuthenticationForm(forms.ModelForm):
         return self.user_cache
 
 
-class ChooseSectionForm(forms.ModelForm):
+class ChooseSectionForm(forms.Form):
     class Meta:
         model = SectionUserLink
         fields = ['section']
 
-    def __init__(self, *args, organisation=None, **kwargs):
+    def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)
+        self.user = user
+        organisation = Organisation.objects.get(organisationuserlink__user=user)
 
-        # This query selects all sections with no more children that are linked to this organisation
+        # This query selects all sections without children that are linked to this organisation
         choices = [(section.id, section.name) for section in
                    Section.objects.raw('WITH RECURSIVE section_tree(id, name, parent_section_id, organisation_id) AS ('
                                        '    SELECT id, name, parent_section_id, organisation_id '
@@ -163,6 +165,11 @@ class ChooseSectionForm(forms.ModelForm):
                                        'WHERE s.id is null', [organisation.id])]
 
         self.fields['section'] = forms.ChoiceField(choices=choices)
+
+    def save(self):
+        model = SectionUserLink(section_id=self.cleaned_data['section'], user=self.user)
+        model.save()
+        return model
 
 
 class AdminPasswordChangeForm(forms.Form):

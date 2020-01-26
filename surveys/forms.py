@@ -10,6 +10,11 @@ class CreateSurveyForm(forms.ModelForm):
 
 
 class AnswerForm(forms.ModelForm):
+    def __init__(self, *args, user=None, page=1, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+        self.page = page
+
     class Meta:
         model = Answer
         fields = ['answer', 'question', ]

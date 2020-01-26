@@ -98,7 +98,6 @@ class SectionUserLink(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name=_('user'))
     section = models.ForeignKey(Section, on_delete=models.CASCADE, verbose_name=_('section'))
 
-
     class Meta:
         verbose_name = _('Section-user-link')
         verbose_name_plural = _('Section-user-links')

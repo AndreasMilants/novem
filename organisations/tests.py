@@ -1,6 +1,8 @@
 from django.test import TestCase
 from .forms import OrganisationCreateForm, OrganisationAuthenticationForm, ChooseSectionForm
-from .models import Section, SectionUserLink, Organisation
+from .models import Section, Organisation, OrganisationUserLink
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class OrganisationTests(TestCase):
@@ -40,7 +42,7 @@ class OrganisationTests(TestCase):
         self.assertTrue(self.save_form_throws_value_error(form))
 
 
-class OrganisationAuthenticationTests(TestCase):
+class OrganisationAuthenticationFormTests(TestCase):
     def setUp(self):
         self.passw = 'pass'
         self.org = OrganisationCreateForm(
@@ -69,19 +71,42 @@ class OrganisationAuthenticationTests(TestCase):
 
 class ChooseSectionFormTests(TestCase):
     def setUp(self):
-        self.org = Organisation(name='test', password='test123')
-        self.org.save()
-        section = Section(name='level0', organisation=self.org)
-        section.save()
+        self.user = User.objects.create_user('test@novem.be', 'thisisatestpass')
+        org = Organisation(name='test', password='test123')
+        org.save()
+        org2 = Organisation(name='test2', password='test123')
+        org2.save()
+
+        link = OrganisationUserLink(user=self.user, organisation=org)
+        link.save()
+
+        self.section = Section(name='level0', organisation=org)
+        self.section.save()
         for i in range(1, 4):
-            section = Section(name='level{}'.format(i), parent_section=section)
-            section.save()
+            self.section = Section(name='level{}'.format(i), parent_section=self.section)
+            self.section.save()
+
+        self.other_section = Section(name='other', organisation=org2)
+        self.other_section.save()
 
     def test_gives_only_bottom_most_sections_of_tree(self):
-        form = ChooseSectionForm(organisation=self.org)
+        form = ChooseSectionForm(user=self.user)
         self.assertEquals(1, len(form.fields['section'].choices))
         self.assertEquals('level3', form.fields['section'].choices[0][1])
 
-    # Cannot check creation because this uses a raw query
+    def test_can_not_link_to_section_not_in_org(self):
+        form = ChooseSectionForm(user=self.user, data={'section': self.other_section.id})
+        self.assertFalse(form.is_valid())
 
-# TODO should check the linktosection view because this does not use the default form behaviour
+    def test_can_link_to_section_in_org(self):
+        form = ChooseSectionForm(user=self.user, data={'section': self.section.id})
+        self.assertTrue(form.is_valid())
+
+    def test_save(self):
+        form = ChooseSectionForm(user=self.user, data={'section': self.section.id})
+        if form.is_valid():
+            model = form.save()
+            self.assertEqual(model.user, self.user)
+            self.assertEqual(model.section, self.section)
+        else:
+            raise Exception('Form should be valid')

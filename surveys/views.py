@@ -102,7 +102,7 @@ def personal_statistics_view(request, section=''):
                 'answer__avg']} for level in LEVEL_CHOICES]
         title = _('Personal')
     else:
-        section = int(section)
+        section = section
         with connection.cursor() as cursor:
             # You could ask why we don't just skip the recursion to get the section and immediately get all subsections
             # of the section with this id. This is for safety: to make sure that not just anybody can get statistics
@@ -140,13 +140,10 @@ def personal_statistics_view(request, section=''):
                            'FROM section_tree2'
                            ') '
                            'GROUP BY q.level '
-                           'ORDER BY q.level', [request.user.id, int(section)])
+                           'ORDER BY q.level', [request.user.id, section])
             rows = cursor.fetchall()
-            stats = [
-                {'level': LEVEL_CHOICES[int(row[0]) - 1][1], 'avg': row[1]} for row in rows]
-            title = Section.objects.get(
-                id=int(section)).name  # This is not really that big of a problem. At this moment
-            # We don't care that people can map section_ids to their names...
+            stats = [{'level': LEVEL_CHOICES[int(row[0]) - 1][1], 'avg': row[1]} for row in rows]
+            title = Section.objects.get(id=section).name
 
     return render(request, 'surveys/personal-statistics.html',
                   {'stats': stats, 'min': min([stat['avg'] for stat in stats]),

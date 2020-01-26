@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import OrganisationAuthenticationForm, ChooseSectionForm
 from django.utils.translation import ugettext_lazy as _
 from .decorators import user_is_linked_to_organisation
-from .models import Organisation, SectionUserLink
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import resolve_url
 
@@ -36,27 +35,21 @@ def link_to_organisation(request):
                   {"form": form, })
 
 
-@login_required
 @user_is_linked_to_organisation
 def link_to_section(request):
-    # Same reason as with link_to_organisation
     if request.user.sectionuserlink_set.all():
         raise PermissionDenied()
-    organisation = Organisation.objects.get(organisationuserlink__user=request.user)
     if request.method == "POST":
-        # If it was really important, I'd check whether the chosen section can be chosen here. This is a vulnerability
-        # if we don't check. But this isn't really important here.
-        # We use a strange workaround for saving this because we set the choices for our model using a raw query
-
-        model = SectionUserLink(user=request.user, section_id=request.POST.get('section'))
-        model.save()
-        messages.success(request, _('You are now a member of %(section)s.') % {
-            'section': model.section,
-        })
+        form = ChooseSectionForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            model = form.save()
+            messages.success(request, _('You are now a member of %(section)s.') % {
+                'section': model.section,
+            })
         next_page = request.GET.get("next")
         if next_page:
             return redirect(next_page)
         return redirect('home')
     else:
-        form = ChooseSectionForm(organisation=organisation)
+        form = ChooseSectionForm(user=request.user)
     return render(request, "organisations/choose_section.html", {'form': form})
