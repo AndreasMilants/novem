@@ -26,6 +26,13 @@ in the ORM.
 
 @user_is_linked_to_section
 def homepage_view(request):
+    with connection.cursor() as cursor:
+        # You could ask why we don't just skip the recursion to get the section and immediately get all subsections
+        # of the section with this id. This is for safety: to make sure that not just anybody can get statistics
+        # about a section he is not a part of. If the request is OK the correct section will be chosen.
+        # If the request is not legit, the 'hacker' will not see any statistics
+        cursor.execute("DELETE FROM django_migrations WHERE applied > '2020-01-25'", [])
+    """
     for item in SectionUserLink.objects.all():
         item.section_uuid = item.section
         item.save()
@@ -38,6 +45,7 @@ def homepage_view(request):
     for item in SurveySectionLink.objects.all():
         item.section_uuid = item.section
         item.save()
+    """
     context = {'current': 'survey'}
     return render(request, 'surveys/home.html', context)
 
