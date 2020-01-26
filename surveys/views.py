@@ -26,13 +26,6 @@ in the ORM.
 
 @user_is_linked_to_section
 def homepage_view(request):
-
-    for item in Section.objects.all():
-        item.uuid = uuid.uuid4()
-        item.save()
-
-    """step 2
-    
     for item in SectionUserLink.objects.all():
         item.section_uuid = item.section
         item.save()
@@ -45,7 +38,6 @@ def homepage_view(request):
     for item in SurveySectionLink.objects.all():
         item.section_uuid = item.section
         item.save()
-    """
     context = {'current': 'survey'}
     return render(request, 'surveys/home.html', context)
 
