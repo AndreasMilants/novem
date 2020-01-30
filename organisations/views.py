@@ -6,14 +6,19 @@ from django.utils.translation import ugettext_lazy as _
 from .decorators import user_is_linked_to_organisation
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import resolve_url
+from .models import OrganisationUserLink, SectionUserLink
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @login_required
 def link_to_organisation(request):
     # We've allowed multiple organisations to be linked to users in the future with the way our models are set up.
     # But at this moment we don't want users to be able to link to multiple organisations, so we raise PermissionDenied
-    if request.user.organisationuserlink_set.all():
+    try:
+        OrganisationUserLink.objects.get(user=request.user)
         raise PermissionDenied()
+    except ObjectDoesNotExist:
+        pass
     if request.method == "POST":
         form = OrganisationAuthenticationForm(request.POST)
         if form.is_valid():
@@ -37,8 +42,11 @@ def link_to_organisation(request):
 
 @user_is_linked_to_organisation
 def link_to_section(request):
-    if request.user.sectionuserlink_set.all():
+    try:
+        SectionUserLink.objects.get(user=request.user)
         raise PermissionDenied()
+    except ObjectDoesNotExist:
+        pass
     if request.method == "POST":
         form = ChooseSectionForm(user=request.user, data=request.POST)
         if form.is_valid():

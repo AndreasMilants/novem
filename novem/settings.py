@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'organisations.apps.OrganisationsConfig',
     'surveys.apps.SurveysConfig',
+    'admin_overwrite.apps.AdminOverwriteConfig',
 
     'debug_toolbar',
 
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [

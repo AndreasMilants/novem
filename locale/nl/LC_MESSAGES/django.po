@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-25 20:23+0100\n"
+"POT-Creation-Date: 2020-01-30 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,46 +18,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\novem\no_docker_settings.py:113 .\novem\settings.py:120
+#: .\novem\no_docker_settings.py:115 .\novem\settings.py:122
 msgid "English"
 msgstr "Engels"
 
-#: .\novem\no_docker_settings.py:114 .\novem\settings.py:121
+#: .\novem\no_docker_settings.py:116 .\novem\settings.py:123
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: .\organisations\admin.py:55
+#: .\organisations\admin.py:92
 #, python-format
 msgid "%(name)s object with primary key %(key)r does not exist."
 msgstr "%(name)s object met primary key %(key)r bestaat niet"
 
-#: .\organisations\admin.py:65
+#: .\organisations\admin.py:102
 msgid "Password changed successfully."
 msgstr "Wachtwoord succesvol aangepast"
 
-#: .\organisations\admin.py:85
+#: .\organisations\admin.py:122
 #, python-format
 msgid "Change password: %s"
 msgstr "Verander wachtwoord: %s"
 
-#: .\organisations\apps.py:7 .\organisations\models.py:19
+#: .\organisations\apps.py:7 .\organisations\models.py:20
 msgid "Organisations"
 msgstr "Organisaties"
 
-#: .\organisations\decorators.py:14
+#: .\organisations\decorators.py:18
 msgid "You have to link to an organisation before you can access this page"
 msgstr "Je moet aan een organisatie linken voordat je deze pagina kan bekijken"
 
-#: .\organisations\decorators.py:27
+#: .\organisations\decorators.py:33
 msgid "You have to choose a section before you can access this page"
 msgstr "Je moet een afdeling kiezen voor je deze pagina kan bekijken"
 
-#: .\organisations\forms.py:12 .\organisations\forms.py:173
+#: .\organisations\forms.py:12 .\organisations\forms.py:181
 msgid "The two password fields didn't match."
 msgstr "De twee wachtwoordvelden kwamen niet overeen."
 
 #: .\organisations\forms.py:14 .\organisations\forms.py:41
-#: .\organisations\forms.py:64 .\organisations\forms.py:177 .\users\forms.py:8
+#: .\organisations\forms.py:64 .\organisations\forms.py:185 .\users\forms.py:8
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -65,7 +65,7 @@ msgstr "Wachtwoord"
 msgid "Password confirmation"
 msgstr "Bevestiging wachtwoord"
 
-#: .\organisations\forms.py:16 .\organisations\forms.py:183 .\users\forms.py:10
+#: .\organisations\forms.py:16 .\organisations\forms.py:191 .\users\forms.py:10
 msgid "Enter the same password as above, for verification."
 msgstr "Voer ter verificatie nogmaals het wachtwoord in."
 
@@ -91,79 +91,83 @@ msgstr ""
 msgid "This account is inactive."
 msgstr "Dit account is inactief"
 
-#: .\organisations\forms.py:181
+#: .\organisations\forms.py:189
 msgid "Password (again)"
 msgstr "Wachtwoord (herhaling)"
 
-#: .\organisations\models.py:10 .\surveys\models.py:23
+#: .\organisations\models.py:11 .\surveys\models.py:47
 msgid "name"
 msgstr "naam"
 
-#: .\organisations\models.py:11
+#: .\organisations\models.py:12
 msgid "password"
 msgstr "wachtwoord"
 
-#: .\organisations\models.py:12
+#: .\organisations\models.py:13
 msgid "is active"
 msgstr "is actief"
 
-#: .\organisations\models.py:13
+#: .\organisations\models.py:14
 msgid "Users can register with this organisation"
 msgstr "Gebruikers kunnen registreren bij deze organisatie"
 
-#: .\organisations\models.py:18
+#: .\organisations\models.py:19
 msgid "Organisation"
 msgstr "Organisatie"
 
-#: .\organisations\models.py:65 .\organisations\models.py:67
-#: .\organisations\models.py:80
+#: .\organisations\models.py:69 .\organisations\models.py:72
+#: .\organisations\models.py:167
 msgid "organisation"
 msgstr "organisaties"
 
-#: .\organisations\models.py:70
+#: .\organisations\models.py:75
 msgid "User-organisation-link"
 msgstr "Gebruiker-organisatie-link"
 
-#: .\organisations\models.py:71
+#: .\organisations\models.py:76
 msgid "User-organisation-links"
 msgstr "Gebruiker-organisatie-link"
 
-#: .\organisations\models.py:82
+#: .\organisations\models.py:165
+msgid "Name"
+msgstr "Naam"
+
+#: .\organisations\models.py:169
 msgid "parent_section"
 msgstr "ouder_afdeling"
 
-#: .\organisations\models.py:86
+#: .\organisations\models.py:175
 #: .\surveys\templates\surveys\administrator-statistics-home.html:6
 #: .\surveys\templates\surveys\administrator-statistics-users.html:12
 msgid "Section"
 msgstr "Afdeling"
 
-#: .\organisations\models.py:87
+#: .\organisations\models.py:176
 msgid "Sections"
 msgstr "Afdelingen"
 
-#: .\organisations\models.py:96 .\organisations\models.py:108
+#: .\organisations\models.py:189 .\organisations\models.py:202
 msgid "user"
 msgstr "gebruiker"
 
-#: .\organisations\models.py:97 .\organisations\models.py:109
-#: .\surveys\models.py:74
+#: .\organisations\models.py:191 .\organisations\models.py:203
+#: .\surveys\models.py:134
 msgid "section"
 msgstr "afdeling"
 
-#: .\organisations\models.py:100
+#: .\organisations\models.py:194
 msgid "Section-user-link"
 msgstr "Afdeling-gebruiker-link"
 
-#: .\organisations\models.py:101
+#: .\organisations\models.py:195
 msgid "Section-user-links"
 msgstr "Afdeling-gebruiker-links"
 
-#: .\organisations\models.py:112
+#: .\organisations\models.py:206
 msgid "Section Administrator"
 msgstr "Afdeling Administrator"
 
-#: .\organisations\models.py:113
+#: .\organisations\models.py:207
 msgid "Section Administrators"
 msgstr "Afdeling Administrators"
 
@@ -184,12 +188,12 @@ msgstr "Verander wachtwoord"
 msgid "Choose a section of this organisation"
 msgstr "Kies een afdeling van deze organisatie"
 
-#: .\organisations\views.py:24
+#: .\organisations\views.py:28
 #, python-format
 msgid "You are now a member of %(organisation)s."
 msgstr "Je bent nu een lid van %(organisation)s."
 
-#: .\organisations\views.py:53
+#: .\organisations\views.py:54
 #, python-format
 msgid "You are now a member of %(section)s."
 msgstr "Je bent nu een lid van %(section)s."
@@ -198,101 +202,141 @@ msgstr "Je bent nu een lid van %(section)s."
 msgid "surveys"
 msgstr "vragenlijsten"
 
-#: .\surveys\models.py:10
+#: .\surveys\decorators.py:19
+#| msgid "You have to choose a section before you can access this page"
+msgid "You have to finish your survey before you can access this page"
+msgstr "Je moet je vragenlijst afronden vooraleer je deze pagina kan bekijken"
+
+#: .\surveys\forms.py:70
+msgid ""
+"You tried answering a question that does not belong to a survey of yours"
+msgstr ""
+"Je probeerde een vraag te beantwoorden die niet tot een vragenlijst van jou behoorde!"
+
+#: .\surveys\forms.py:73 .\surveys\forms.py:76
+#| msgid "You have to choose a section before you can access this page"
+msgid "You have to answer all questions on this level"
+msgstr "Je moet alle vragen over dit aspect beantwoorden"
+
+#: .\surveys\forms.py:123
+msgid "You have to choose 3 different levels"
+msgstr "Je moet 3 verschillende aspecten kiezen"
+
+#: .\surveys\models.py:13
 msgid "Power"
 msgstr "Kracht"
 
-#: .\surveys\models.py:11
+#: .\surveys\models.py:14
 msgid "Flexibility"
 msgstr "Flexibiliteit"
 
-#: .\surveys\models.py:12
+#: .\surveys\models.py:15
 msgid "Adventure"
 msgstr "Avontuur"
 
-#: .\surveys\models.py:13
+#: .\surveys\models.py:16
 msgid "Vision"
 msgstr "Visie"
 
-#: .\surveys\models.py:14
+#: .\surveys\models.py:17
 msgid "Empathy"
 msgstr "Empathie"
 
-#: .\surveys\models.py:15
+#: .\surveys\models.py:18
 msgid "Trust"
 msgstr "Vertrouwen"
 
-#: .\surveys\models.py:16
+#: .\surveys\models.py:19
 msgid "Rest"
 msgstr "Rust"
 
-#: .\surveys\models.py:17
+#: .\surveys\models.py:20
 msgid "Authenticity"
 msgstr "Authenticiteit"
 
-#: .\surveys\models.py:18
+#: .\surveys\models.py:21
 msgid "Research"
 msgstr "Onderzoek"
 
-#: .\surveys\models.py:27 .\surveys\templates\surveys\survey.html:5
+#: .\surveys\models.py:53 .\surveys\models.py:89
+#: .\surveys\templates\surveys\finish-survey.html:5
+#: .\surveys\templates\surveys\survey.html:5
 msgid "Survey"
 msgstr "Vragenlijst"
 
-#: .\surveys\models.py:28 .\templates\_base_post_login.html:27
+#: .\surveys\models.py:54 .\templates\_base_post_login.html:23
 msgid "Surveys"
 msgstr "Vragenlijsten"
 
-#: .\surveys\models.py:41
+#: .\surveys\models.py:67 .\surveys\models.py:119
 msgid "level"
 msgstr "level"
 
-#: .\surveys\models.py:42 .\surveys\models.py:73
+#: .\surveys\models.py:68 .\surveys\models.py:133
 msgid "survey"
 msgstr "vragenlijst"
 
-#: .\surveys\models.py:43
+#: .\surveys\models.py:69
 msgid "question"
 msgstr "vraag"
 
-#: .\surveys\models.py:46 .\surveys\models.py:54
+#: .\surveys\models.py:72 .\surveys\models.py:93
 msgid "Question"
 msgstr "Vraag"
 
-#: .\surveys\models.py:47
+#: .\surveys\models.py:73
 msgid "Questions"
 msgstr "Vragen"
 
-#: .\surveys\models.py:55 .\surveys\models.py:63
+#: .\surveys\models.py:85 .\surveys\models.py:86
+#| msgid "Answers"
+msgid "Survey Answers"
+msgstr "Vragenlijst Antwoorden"
+
+#: .\surveys\models.py:95 .\surveys\models.py:107
 msgid "Answer"
 msgstr "Antwoord"
 
-#: .\surveys\models.py:64
+#: .\surveys\models.py:100
+#| msgid "Users"
+msgid "User"
+msgstr "Gebruiker"
+
+#: .\surveys\models.py:103 .\surveys\models.py:117
+#| msgid "Surveys"
+msgid "Survey Instance"
+msgstr "Vragenlijst Antwoorden"
+
+#: .\surveys\models.py:108
 msgid "Answers"
 msgstr "Antwoorden"
 
-#: .\surveys\models.py:77
+#: .\surveys\models.py:123 .\surveys\models.py:124
+#| msgid "Important dates"
+msgid "Important Level Answer"
+msgstr "Belangrijk Aspect"
+
+#: .\surveys\models.py:137
 msgid "Survey-section-link"
 msgstr "Vragenlijst-afdeling-link"
 
-#: .\surveys\models.py:78
+#: .\surveys\models.py:138
 msgid "Survey-section-links"
 msgstr "Vragenlijst-afdeling-links"
 
 #: .\surveys\templates\surveys\administrator-statistics-home.html:4
-#| msgid "Statistics"
 msgid "See detailed statistics"
 msgstr "Bekijk gedetailleerde statistieken"
 
 #: .\surveys\templates\surveys\administrator-statistics-home.html:13
 #: .\surveys\templates\surveys\administrator-statistics-section.html:4
 #: .\surveys\templates\surveys\administrator-statistics-user.html:4
-#: .\templates\_base_post_login.html:31
+#: .\templates\_base_post_login.html:27
 msgid "Statistics"
 msgstr "Statistieken"
 
 #: .\surveys\templates\surveys\administrator-statistics-home.html:17
 #: .\surveys\templates\surveys\administrator-statistics-users.html:4
-#| msgid "users"
 msgid "Users"
 msgstr "Gebruikers"
 
@@ -302,13 +346,22 @@ msgid "See users of"
 msgstr "Bekijk gebruikers van"
 
 #: .\surveys\templates\surveys\administrator-statistics-users.html:6
-#| msgid "Statistics"
 msgid "See statistics of"
 msgstr "Bekijk statistieken van"
 
 #: .\surveys\templates\surveys\administrator-statistics-users.html:11
 msgid "Email"
 msgstr "E-mail"
+
+#: .\surveys\templates\surveys\finish-survey.html:6
+#| msgid "survey"
+msgid "Finish survey"
+msgstr "Beëindig vragenlijst"
+
+#: .\surveys\templates\surveys\finish-survey.html:13
+#| msgid "Start Survey!"
+msgid "Submit Survey"
+msgstr "Dien vragenlijst in"
 
 #: .\surveys\templates\surveys\home.html:4
 msgid "Start Survey!"
@@ -318,39 +371,47 @@ msgstr "Start Vragenlijst!"
 msgid "Statistics:"
 msgstr "Statistieken"
 
-#: .\surveys\templates\surveys\survey.html:39
+#: .\surveys\templates\surveys\survey.html:33
 msgid "Previous"
 msgstr "Vorige"
 
-#: .\surveys\templates\surveys\survey.html:41
+#: .\surveys\templates\surveys\survey.html:35
 msgid "Next"
 msgstr "Volgende"
 
-#: .\surveys\views.py:35
+#: .\surveys\views.py:28
 msgid "The administrator did not set up a survey for your section."
 msgstr "De administrator heeft geen vragenlijst ingesteld voor jouw afdeling."
 
-#: .\surveys\views.py:76
+#: .\surveys\views.py:82
 msgid "You have to finish the survey before you can see statistics"
 msgstr "Je moet de vragenlijst afronden voor je statistieken kan bekijken"
 
-#: .\surveys\views.py:94 .\surveys\views.py:101
+#: .\surveys\views.py:85 .\surveys\views.py:90
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: .\templates\_base_post_login.html:37
+#: .\surveys\views.py:139
+msgid "This user has not finished his survey"
+msgstr "Deze gebruiker heeft zijn vragenlijst nog niet afgewerkt"
+
+#: .\templates\_base_post_login.html:33
 msgid "Administrator Statistics"
 msgstr "Administrator Statistieken"
 
-#: .\templates\_base_post_login.html:43
+#: .\templates\_base_post_login.html:39
 msgid "Superuser page"
 msgstr "Superuser pagina"
 
-#: .\templates\_base_post_login.html:46
+#: .\templates\_base_post_login.html:43
 msgid "Log Out"
 msgstr "Afmelden"
 
 #: .\users\admin.py:26
+msgid "Permissions"
+msgstr "Permissies"
+
+#: .\users\admin.py:29
 msgid "Important dates"
 msgstr "Belangrijke data"
 
@@ -383,6 +444,3 @@ msgstr ""
 
 #~ msgid "Admin page"
 #~ msgstr "Administrator"
-
-#~ msgid "Permissions"
-#~ msgstr "Permissies"

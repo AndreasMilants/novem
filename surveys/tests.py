@@ -1,8 +1,6 @@
 from django.test import TestCase
 from .forms import AnswerForm, AnswerFormSet
 from .models import Question, Survey, LEVEL_CHOICES, Answer
-from django.contrib.auth import get_user_model
-from django.db.utils import IntegrityError
 
 
 class SurveyModelTests(TestCase):

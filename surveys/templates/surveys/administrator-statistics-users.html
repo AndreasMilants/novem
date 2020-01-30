@@ -17,8 +17,8 @@
                     <a href="{% url 'admin-statistics-user' user=user.email %}"><span>{{ user.email }}</span></a>
                 </td>
                 <td>
-                    <a href="{% url 'admin-statistics-users' section=user.section_id %}">
-                        <span>{{ user.section_name }}</span>
+                    <a href="{% url 'admin-statistics-users' section=user.sectionuserlink.section.id %}">
+                        <span>{{ user.sectionuserlink.section.name }}</span>
                     </a>
                 </td>
             </tr>

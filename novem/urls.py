@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import settings
+from django.conf.urls import url
+
 
 urlpatterns = [
     # Django admin
@@ -26,6 +28,7 @@ urlpatterns = [
     # Other apps
     path('', include('surveys.urls')),
     path('organisations/', include('organisations.urls')),
+    url(r'^_nested_admin/', include('nested_admin.urls')),
 ]
 
 if settings.DEBUG:

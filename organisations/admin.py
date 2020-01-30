@@ -1,6 +1,6 @@
-from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm, SectionCreationForm, \
-    SectionUpdateForm
-from .models import Organisation, OrganisationUserLink, Section, SectionUserLink, SectionAdministrator
+from .forms import OrganisationCreateForm, OrganisationChangeForm, AdminPasswordChangeForm
+from .models import Organisation, Section, SectionAdministrator
+from surveys.models import SurveySectionLink
 from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib import admin, messages
 from django.contrib.auth import update_session_auth_hash
@@ -12,16 +12,53 @@ from django.urls import path, reverse
 from django.contrib.admin.options import IS_POPUP_VAR
 from django.views.decorators.debug import sensitive_post_parameters
 from django.template.response import TemplateResponse
+from nested_admin.nested import NestedModelAdmin, NestedStackedInline, NestedTabularInline
 
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
 
 
-class OrganisationAdmin(admin.ModelAdmin):
+"""
+I do not know of a way to make recursive inlines. So this is the next best solution. This way you can only make
+section trees of 6 levels deep though. If you need a deeper tree. You should use the sectionmodel directly
+"""
+
+
+class SectionInlineUnderSection(NestedTabularInline):
+    model = Section
+    extra = 0
+    exclude = ['organisation']
+
+
+class SectionInlineLevelFive(SectionInlineUnderSection):
+    inlines = [SectionInlineUnderSection, ]
+
+
+class SectionInlineLevelFour(SectionInlineUnderSection):
+    inlines = [SectionInlineLevelFive, ]
+
+
+class SectionInlineLevelThree(SectionInlineUnderSection):
+    inlines = [SectionInlineLevelFour, ]
+
+
+class SectionInlineLevelTwo(SectionInlineUnderSection):
+    inlines = [SectionInlineLevelThree, ]
+
+
+class SectionInlineLevelOne(NestedTabularInline):
+    model = Section
+    extra = 0
+    exclude = ['parent_section']
+    inlines = [SectionInlineLevelTwo, ]
+
+
+class OrganisationAdmin(NestedModelAdmin):
     add_form = OrganisationCreateForm
     form = OrganisationChangeForm
     change_password_form = AdminPasswordChangeForm
     model = Organisation
     list_filter = ['name', ]
+    inlines = [SectionInlineLevelOne, ]
 
     def lookup_allowed(self, lookup, value):
         # Don't allow lookups involving passwords.
@@ -105,25 +142,20 @@ class OrganisationAdmin(admin.ModelAdmin):
         return TemplateResponse(request, 'organisations/change_password.html', context)
 
 
-class SectionAdmin(admin.ModelAdmin):
-    add_form = SectionCreationForm
-    form = SectionUpdateForm
-    model = Section
-    list_filter = ['name', 'organisation']
+class SectionAdministratorInline(admin.StackedInline):
+    model = SectionAdministrator
+    extra = 0
 
-    def get_form(self, request, obj=None, **kwargs):
-        """
-        Use special form during organisation creation
-        """
-        defaults = {}
-        if obj is None:
-            defaults['form'] = self.add_form
-        defaults.update(kwargs)
-        return super().get_form(request, obj, **defaults)
+
+class SurveyAdministratorInline(admin.StackedInline):
+    model = SurveySectionLink
+    extra = 0
+
+
+class SectionAdmin(admin.ModelAdmin):
+    model = Section
+    inlines = [SectionAdministratorInline, SurveyAdministratorInline, ]
 
 
 admin.site.register(Organisation, OrganisationAdmin)
-admin.site.register(OrganisationUserLink)
 admin.site.register(Section, SectionAdmin)
-admin.site.register(SectionUserLink)
-admin.site.register(SectionAdministrator)

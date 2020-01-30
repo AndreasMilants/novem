@@ -166,9 +166,10 @@ class ChooseSectionForm(forms.Form):
 
         self.fields['section'] = forms.ChoiceField(choices=choices)
 
-    def save(self):
+    def save(self, commit=True):
         model = SectionUserLink(section_id=self.cleaned_data['section'], user=self.user)
-        model.save()
+        if commit:
+            model.save()
         return model
 
 
@@ -222,15 +223,3 @@ class AdminPasswordChangeForm(forms.Form):
         return ['password']
 
     changed_data = property(_get_changed_data)
-
-
-class SectionCreationForm(forms.ModelForm):
-    class Meta:
-        model = Section
-        exclude = ['id']
-
-
-class SectionUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Section
-        exclude = []

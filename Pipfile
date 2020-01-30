@@ -12,6 +12,7 @@ django-debug-toolbar = "*"
 whitenoise = "*"
 gunicorn = "*"
 dj-database-url = "*"
+django-nested-admin = "*"
 
 [requires]
 python_version = "3.7"

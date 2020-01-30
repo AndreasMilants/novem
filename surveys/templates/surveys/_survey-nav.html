@@ -1,0 +1,10 @@
+<section class="survey-nav">
+    {% for p in pages %}
+        <button type="submit" onclick="submitAndGoTo({{ p.page }})"
+                class="survey-page{% if p.page == page %} current{% elif p.link %} less{% endif %}">
+            <div>
+                <span>{{ p.page }}</span>
+            </div>
+        </button>
+    {% endfor %}
+</section>

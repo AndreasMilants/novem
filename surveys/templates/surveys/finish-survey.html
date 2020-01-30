@@ -1,0 +1,17 @@
+{% extends '_base_post_login.html' %}
+{% load i18n static %}
+
+{% block content %}
+    <h1>{% trans 'Survey' %} {{ survey }}</h1>
+    <h2>{% trans 'Finish survey' %}</h2>
+    <form method="post" class="survey">
+        {% include 'surveys/_survey-nav.html' %}
+        {% csrf_token %}
+        {{ form_set.non_form_errors }}
+        {{ form_set.as_p }}
+        <div class="survey-next-buttons">
+            <button type="submit">{% trans 'Submit Survey' %}</button>
+        </div>
+    </form>
+    <script src="{% static 'js/surveys/surveys.js' %}"></script>
+{% endblock content %}

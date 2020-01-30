@@ -5,19 +5,15 @@
     <nav id="nav">
         <div id="nav-open" class="material-icons visible">menu</div>
         <div id="nav-close" class="material-icons">close</div>
-        {% if user.organisationuserlink_set.all %}
+        {% if user.organisationuserlink %}
             <section class="account-card">
                 <ul>
-                    {% for organisation in user.organisationuserlink_set.all %}
-                        <span class="material-icons">group</span>
-                        <li>
-                            <span>{{ organisation.organisation }}</span>
-                            {% for section in user.sectionuserlink_set.all %}
-                                <span>-{{ section.section.name }}</span>
-                            {% endfor %}
-                            <span class="email">{{ user.email }}</span>
-                        </li>
-                    {% endfor %}
+                    <span class="material-icons">group</span>
+                    <li>
+                        <span>{{ user.organisationuserlink.organisation }}</span>
+                        <span>-{{ user.sectionuserlink.section.name }}</span>
+                        <span class="email">{{ user.email }}</span>
+                    </li>
                 </ul>
             </section>
         {% endif %}
@@ -40,7 +36,8 @@
             {% endif %}
             {% if user.is_superuser %}
                 <li><a href="{% url 'admin:index' %}"><span
-                        class="material-icons">supervisor_account</span><span>{% trans 'Superuser page' %}</span></a></li>
+                        class="material-icons">supervisor_account</span><span>{% trans 'Superuser page' %}</span></a>
+                </li>
             {% endif %}
             <li><a href="{% url 'logout' %}"><span
                     class="material-icons">exit_to_app</span><span>{% trans 'Log Out' %}</span></a></li>

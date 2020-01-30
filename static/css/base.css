@@ -271,6 +271,7 @@ fieldset {
 
 .button {
     display: inline-block;
+    margin-bottom: 1rem;
     padding: 1rem;
     border-radius: 2px;
     background-color: #042a61;
@@ -325,11 +326,18 @@ fieldset {
 
 .survey-nav {
     display: flex;
+    margin-bottom: 1rem;
     justify-content: space-evenly;
     max-width: 400px;
 }
 
 .survey-nav .survey-page {
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.survey-nav .survey-page div {
     height: 2rem;
     width: 2rem;
     text-align: center;
@@ -344,22 +352,20 @@ fieldset {
     border: 1px solid transparent;
 }
 
-.survey-nav .survey-page.current {
-    position: relative;
-    top: -5px;
+.survey-nav .survey-page.current div {
     background: #042a61;
     color: white;
     border: 6px solid #042a61;
 }
 
-.survey-nav .survey-page.less {
+.survey-nav .survey-page.less div {
     background: #5b80b2;
     color: white;
     transition: .6s;
     cursor: pointer;
 }
 
-.survey-nav .survey-page.less:hover {
+.survey-nav .survey-page.less div:hover {
     background: #ffffff;
     border: 1px solid #5b80b2;
     color: #5b80b2;
@@ -372,9 +378,6 @@ fieldset {
 
 .survey {
     margin-top: 1rem;
-}
-
-.survey-level {
 }
 
 table {
@@ -512,14 +515,14 @@ table th {
         max-width: 620px;
     }
 
-    .survey-nav .survey-page {
+    .survey-nav .survey-page div {
         height: 2.5rem;
         width: 2.5rem;
         line-height: 1.3rem;
         font-size: 1.3rem;
     }
 
-    .survey-nav .survey-page.current {
+    .survey-nav .survey-page.current div {
         top: -7px;
         border-width: 8px;
     }
@@ -530,7 +533,7 @@ table th {
 }
 
 @media screen and (min-width: 1000px) {
-    .survey-nav .survey-page {
+    .survey-nav .survey-page div {
         height: 3.5rem;
         width: 3.5rem;
         line-height: 1.5rem;
