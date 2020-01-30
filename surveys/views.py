@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from .decorators import user_has_finished_survey
+from django.core.exceptions import ObjectDoesNotExist
 
 User = get_user_model()
 
@@ -135,8 +136,10 @@ def admin_statistics_user_view(request, user):
     stats = Statistics()
     other = User.objects.get(email=user)
     section = Section.objects.get(sectionuserlink__user=other)
-    stats.init_other_person(request.user, other)
-    if len(stats) == 0:
-        messages.info(request, _('This user has not finished his survey'))
+    try:
+        stats.init_other_person(request.user, other)
+    except ObjectDoesNotExist:
+        if len(stats) == 0:
+            messages.info(request, _('This user has not finished his survey'))
     return render(request, 'surveys/administrator-statistics-user.html',
                   {'stats': stats, 'current_section': section, 'user_statistics': other, 'current': 'stat-admin'})
