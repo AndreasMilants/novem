@@ -22,6 +22,7 @@ class AnswerForm(forms.ModelForm):
     def __init__(self, *args, user=None, initial=None, **kwargs):
         super().__init__(*args, initial=initial, **kwargs)
         self.user = user
+        a = Question.objects
         self.fields['answer'].label = Question.objects.get(id=initial.get('question'))
 
     def save(self, commit=True):

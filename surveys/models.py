@@ -144,7 +144,7 @@ class SurveySectionLink(models.Model):
 class Statistics:
     """
     This model can be seen as a view in a database. I've decided not to use a view though, because django doesn't
-    support apps that are portable with views (views can't be automatically created)
+    support apps that are portable with views (views can't be automatically created by the orm)
     """
 
     def __init__(self):
