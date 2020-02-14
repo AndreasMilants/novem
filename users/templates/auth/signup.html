@@ -1,11 +1,13 @@
 {% extends '_base.html' %}
-{% block title %}Novem | Aanmelden{% endblock title %}
+{% load i18n %}
+
+{% block title %}Novem{% endblock title %}
 {% block content %}
+    <h1>{% trans 'Sign Up' %}</h1>
     <form method="post">
-        <legend>Registreren</legend>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Registreer</button>
-        <a href="{% url 'login' %}">Ik heb al een account</a>
+        <button type="submit">{% trans 'Sign Up' %}</button>
+        <a href="{% url 'login' %}">{% trans 'I have an account already' %}</a>
     </form>
 {% endblock content %}

@@ -3,7 +3,7 @@
 
 {% block content %}
     <h1>{% trans 'Survey' %} {{ survey }}</h1>
-    <h2>{% trans 'Finish survey' %}</h2>
+    <h2>{% trans 'Which 3 aspects are the most important to you?' %}</h2>
     <form method="post" class="survey">
         {% include 'surveys/_survey-nav.html' %}
         {% csrf_token %}

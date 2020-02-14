@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 17:41+0100\n"
+"POT-Creation-Date: 2020-02-14 18:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,22 +203,20 @@ msgid "surveys"
 msgstr "surveys"
 
 #: .\surveys\decorators.py:19
-#| msgid "You have to choose a section before you can access this page"
 msgid "You have to finish your survey before you can access this page"
 msgstr "You have to finish your survey before you can access this page"
 
-#: .\surveys\forms.py:70
+#: .\surveys\forms.py:71
 msgid ""
 "You tried answering a question that does not belong to a survey of yours"
 msgstr ""
 "You tried answering a question that does not belong to a survey of yours"
 
-#: .\surveys\forms.py:73 .\surveys\forms.py:76
-#| msgid "You have to choose a section before you can access this page"
+#: .\surveys\forms.py:74 .\surveys\forms.py:77
 msgid "You have to answer all questions on this level"
 msgstr "You have to answer all questions about this aspect"
 
-#: .\surveys\forms.py:123
+#: .\surveys\forms.py:124
 msgid "You have to choose 3 different levels"
 msgstr "You have to choose 3 different aspects"
 
@@ -289,7 +287,6 @@ msgid "Questions"
 msgstr "Questions"
 
 #: .\surveys\models.py:85 .\surveys\models.py:86
-#| msgid "Answers"
 msgid "Survey Answers"
 msgstr "Survey Answers"
 
@@ -298,12 +295,10 @@ msgid "Answer"
 msgstr "Answer"
 
 #: .\surveys\models.py:100
-#| msgid "Users"
 msgid "User"
 msgstr "User"
 
 #: .\surveys\models.py:103 .\surveys\models.py:117
-#| msgid "Surveys"
 msgid "Survey Instance"
 msgstr "Survey Instance"
 
@@ -312,7 +307,6 @@ msgid "Answers"
 msgstr "Answers"
 
 #: .\surveys\models.py:123 .\surveys\models.py:124
-#| msgid "Important dates"
 msgid "Important Level Answer"
 msgstr "Important Level Answer"
 
@@ -354,12 +348,10 @@ msgid "Email"
 msgstr "Email"
 
 #: .\surveys\templates\surveys\finish-survey.html:6
-#| msgid "survey"
-msgid "Finish survey"
-msgstr "Finish survey"
+msgid "Which 3 aspects are the most important to you?"
+msgstr "Which 3 aspects are the most important to you?"
 
 #: .\surveys\templates\surveys\finish-survey.html:13
-#| msgid "Start Survey!"
 msgid "Submit Survey"
 msgstr "Submit Survey"
 
@@ -379,19 +371,19 @@ msgstr "Previous"
 msgid "Next"
 msgstr "Next"
 
-#: .\surveys\views.py:28
+#: .\surveys\views.py:29
 msgid "The administrator did not set up a survey for your section."
 msgstr "The administrator did not set up a survey for your section."
 
-#: .\surveys\views.py:82
+#: .\surveys\views.py:84
 msgid "You have to finish the survey before you can see statistics"
 msgstr "You have to finish the survey before you can see statistics"
 
-#: .\surveys\views.py:85 .\surveys\views.py:90
+#: .\surveys\views.py:87 .\surveys\views.py:92
 msgid "Personal"
 msgstr "Personal"
 
-#: .\surveys\views.py:139
+#: .\surveys\views.py:143
 msgid "This user has not finished his survey"
 msgstr "This user has not finished his survey"
 
@@ -423,6 +415,10 @@ msgstr "users"
 msgid "Log In"
 msgstr "Log In"
 
+#: .\users\templates\auth\login.html:11
+msgid "I don't have an account yet"
+msgstr "I don't have an account yet"
+
 #: .\users\templates\auth\logout.html:6
 msgid "You've been logged out!"
 msgstr "You've been logged out!"
@@ -441,6 +437,18 @@ msgstr ""
 "\"%(login_url)s\">login page</a> within\n"
 "            <span id=\"timer\">5</span> seconds.\n"
 "        "
+
+#: .\users\templates\auth\signup.html:6 .\users\templates\auth\signup.html:10
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: .\users\templates\auth\signup.html:11
+msgid "I have an account already"
+msgstr "I have an account already"
+
+#~| msgid "survey"
+#~ msgid "Finish survey"
+#~ msgstr "Finish survey"
 
 #~ msgid "Admin page"
 #~ msgstr "Admin page"

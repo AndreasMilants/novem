@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 17:41+0100\n"
+"POT-Creation-Date: 2020-02-14 18:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,22 +203,21 @@ msgid "surveys"
 msgstr "vragenlijsten"
 
 #: .\surveys\decorators.py:19
-#| msgid "You have to choose a section before you can access this page"
 msgid "You have to finish your survey before you can access this page"
 msgstr "Je moet je vragenlijst afronden vooraleer je deze pagina kan bekijken"
 
-#: .\surveys\forms.py:70
+#: .\surveys\forms.py:71
 msgid ""
 "You tried answering a question that does not belong to a survey of yours"
 msgstr ""
-"Je probeerde een vraag te beantwoorden die niet tot een vragenlijst van jou behoorde!"
+"Je probeerde een vraag te beantwoorden die niet tot een vragenlijst van jou "
+"behoorde!"
 
-#: .\surveys\forms.py:73 .\surveys\forms.py:76
-#| msgid "You have to choose a section before you can access this page"
+#: .\surveys\forms.py:74 .\surveys\forms.py:77
 msgid "You have to answer all questions on this level"
 msgstr "Je moet alle vragen over dit aspect beantwoorden"
 
-#: .\surveys\forms.py:123
+#: .\surveys\forms.py:124
 msgid "You have to choose 3 different levels"
 msgstr "Je moet 3 verschillende aspecten kiezen"
 
@@ -289,7 +288,6 @@ msgid "Questions"
 msgstr "Vragen"
 
 #: .\surveys\models.py:85 .\surveys\models.py:86
-#| msgid "Answers"
 msgid "Survey Answers"
 msgstr "Vragenlijst Antwoorden"
 
@@ -298,12 +296,10 @@ msgid "Answer"
 msgstr "Antwoord"
 
 #: .\surveys\models.py:100
-#| msgid "Users"
 msgid "User"
 msgstr "Gebruiker"
 
 #: .\surveys\models.py:103 .\surveys\models.py:117
-#| msgid "Surveys"
 msgid "Survey Instance"
 msgstr "Vragenlijst Antwoorden"
 
@@ -312,7 +308,6 @@ msgid "Answers"
 msgstr "Antwoorden"
 
 #: .\surveys\models.py:123 .\surveys\models.py:124
-#| msgid "Important dates"
 msgid "Important Level Answer"
 msgstr "Belangrijk Aspect"
 
@@ -354,12 +349,10 @@ msgid "Email"
 msgstr "E-mail"
 
 #: .\surveys\templates\surveys\finish-survey.html:6
-#| msgid "survey"
-msgid "Finish survey"
-msgstr "Beëindig vragenlijst"
+msgid "Which 3 aspects are the most important to you?"
+msgstr "Welke 3 aspecten vind je het belangrijkst?"
 
 #: .\surveys\templates\surveys\finish-survey.html:13
-#| msgid "Start Survey!"
 msgid "Submit Survey"
 msgstr "Dien vragenlijst in"
 
@@ -379,19 +372,19 @@ msgstr "Vorige"
 msgid "Next"
 msgstr "Volgende"
 
-#: .\surveys\views.py:28
+#: .\surveys\views.py:29
 msgid "The administrator did not set up a survey for your section."
 msgstr "De administrator heeft geen vragenlijst ingesteld voor jouw afdeling."
 
-#: .\surveys\views.py:82
+#: .\surveys\views.py:84
 msgid "You have to finish the survey before you can see statistics"
 msgstr "Je moet de vragenlijst afronden voor je statistieken kan bekijken"
 
-#: .\surveys\views.py:85 .\surveys\views.py:90
+#: .\surveys\views.py:87 .\surveys\views.py:92
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: .\surveys\views.py:139
+#: .\surveys\views.py:143
 msgid "This user has not finished his survey"
 msgstr "Deze gebruiker heeft zijn vragenlijst nog niet afgewerkt"
 
@@ -423,6 +416,10 @@ msgstr "gebruikers"
 msgid "Log In"
 msgstr "Aanmelden"
 
+#: .\users\templates\auth\login.html:11
+msgid "I don't have an account yet"
+msgstr "Ik heb nog geen account"
+
 #: .\users\templates\auth\logout.html:6
 msgid "You've been logged out!"
 msgstr "Je bent afgemeld!"
@@ -441,6 +438,18 @@ msgstr ""
 "\">aanmeld pagina</a> binnen\n"
 "            <span id=\"timer\">5</span> seconden.\n"
 "        "
+
+#: .\users\templates\auth\signup.html:6 .\users\templates\auth\signup.html:10
+msgid "Sign Up"
+msgstr "Registreer"
+
+#: .\users\templates\auth\signup.html:11
+msgid "I have an account already"
+msgstr "Ik heb al een account"
+
+#~| msgid "survey"
+#~ msgid "Finish survey"
+#~ msgstr "Beëindig vragenlijst"
 
 #~ msgid "Admin page"
 #~ msgstr "Administrator"
