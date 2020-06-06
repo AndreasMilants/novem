@@ -18,7 +18,6 @@ from django.urls import path, include
 from . import settings
 from django.conf.urls import url
 
-
 urlpatterns = [
     # Django admin
     path('admin/', admin.site.urls),
@@ -30,9 +29,9 @@ urlpatterns = [
     path('organisations/', include('organisations.urls')),
     url(r'^_nested_admin/', include('nested_admin.urls')),
 ]
-
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
